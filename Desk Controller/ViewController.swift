@@ -17,6 +17,8 @@ class ViewController: NSViewController, CBPeripheralDelegate, CBCentralManagerDe
     var peripherals = [CBPeripheral]()
     var desks = [DeskPeripheral]()
     
+    var controller: DeskController? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -87,8 +89,11 @@ class ViewController: NSViewController, CBPeripheralDelegate, CBCentralManagerDe
                 
                 print("Connected to Desk")
 //                peripheral.discoverServices(nil)
+                let desk = DeskPeripheral(peripheral: peripheral)
+                desks.append(desk)
                 
-                desks.append(DeskPeripheral(peripheral: peripheral))
+                controller = DeskController(desk: desk)
+                controller?.moveToPosition(.sit)
                 
                 
                 
