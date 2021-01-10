@@ -19,6 +19,11 @@ class ViewController: NSViewController, CBPeripheralDelegate, CBCentralManagerDe
     
     var controller: DeskController? = nil
     
+    @IBOutlet weak var heightLabel: NSTextField!
+    
+    @IBOutlet weak var upButton: NSButton!
+    @IBOutlet weak var downButton: NSButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,6 +35,46 @@ class ViewController: NSViewController, CBPeripheralDelegate, CBCentralManagerDe
         didSet {
         // Update the view, if already loaded.
         }
+    }
+    
+    @IBAction func moveUpClicked(_ sender: TouchButton) {
+        guard let controller = controller else {
+            return
+        }
+        
+        if !sender.isPressed {
+            controller.stopMoving()
+        } else if let position = controller.desk.position, controller.preferences.stand > position {
+            controller.moveToPosition(.stand)
+        } else {
+            controller.moveUp()
+        }
+    }
+    
+    @IBAction func moveDownClicked(_ sender: TouchButton) {
+        guard let controller = controller else {
+            return
+        }
+        
+        if !sender.isPressed {
+            controller.stopMoving()
+        } else if let position = controller.desk.position, controller.preferences.sit < position {
+            controller.moveToPosition(.sit)
+        } else {
+            controller.moveDown()
+        }
+    }
+    
+    @IBAction func sit(_ sender: Any) {
+        controller?.moveToPosition(.sit)
+    }
+    
+    @IBAction func stand(_ sender: Any) {
+        controller?.moveToPosition(.stand)
+    }
+    
+    @IBAction func stop(_ sender: Any) {
+        controller?.stopMoving()
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
@@ -56,24 +101,10 @@ class ViewController: NSViewController, CBPeripheralDelegate, CBCentralManagerDe
                     print("FOUND DESK: \(peripheral)")
                     
                     peripherals.append(peripheral)
-                    
-                    
-//                    peripheral.delegate = self
-                    central.connect(peripheral, options: nil)
-                    
-//                    central.stopScan()
-                }
-//                print(peripheral.services)
 
-//                // We've found it so stop scan
-//                self.centralManager?.stopScan()
-//
-//                // Copy the peripheral instance
-//                self.peripheral = peripheral
-//                self.peripheral?.delegate = self
-//
-//                // Connect!
-//                self.centralManager?.connect(peripheral, options: nil)
+                    central.connect(peripheral, options: nil)
+                }
+
 
             }
     
@@ -93,104 +124,19 @@ class ViewController: NSViewController, CBPeripheralDelegate, CBCentralManagerDe
                 desks.append(desk)
                 
                 controller = DeskController(desk: desk)
-                controller?.moveToPosition(.sit)
-                
-                
-                
-//                if peripheral == self.peripheral {
-//                    print("Connected to your Desk")
-//                    peripheral.discoverServices([DeskPeripheral.deskPositionServiceUUID])
-//                }
-            }
-//
-//    // Handles discovery event
-//            func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-//
-//                guard deskPeripherals.contains(peripheral), let services = peripheral.services else {
-//                    return
-//                }
-//
-//                services.forEach { service in
-//                    print("Discovered service: \(service)")
-//                    peripheral.discoverCharacteristics(nil, for: service)
-//                }
-//
-////                print("Discovered peripheral services: \(peripheral.services)")
-//
-////                if let services = peripheral.services {
-////                    for service in services {
-////                        if service.uuid == DeskPeripheral.deskPositionServiceUUID {
-////                            print("Desk service found")
-////                            //Now kick off discovery of characteristics
-////                            peripheral.discoverCharacteristics([DeskPeripheral.deskPositionCharacteristicUUID], for: service)
-////                            return
-////                        }
-////                    }
-////                }
-//            }
-//
-//    // Handling discovery of characteristics
-//            func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-//
-//                guard deskPeripherals.contains(peripheral), let characteristics = service.characteristics else {
-//                    return
-//                }
-//
-//                characteristics.forEach { characteristic in
-//                    print("Discovered characteristic: \(characteristic)")
-//
-//
-////                    up: Buffer.from("4700", "hex"),
-//
-//                    if characteristic.uuid == DeskPeripheral.deskControlCharacteristicUUID {
-//                        if let data = Data(hexString: "4700") {
-//                            peripheral.writeValue(data, for: characteristic, type: .withResponse)
-//
-//                        }
-//
-//                    }
-//
-//                }
-//
-////                print("Discovered peripheral characteristics: \(service.characteristics), for service: \(service)")
-////
-////                if let characteristics = service.characteristics {
-////                    for characteristic in characteristics {
-////                        if characteristic.uuid == DeskPeripheral.deskPositionCharacteristicUUID {
-////                            print("Desk position characteristic found")
-////                        }
-////                    }
-////                }
-//            }
+//                controller?.moveToPosition(.sit)
+                controller?.onPositionChange = { position in
+                    
+                    DispatchQueue.main.async {
+                        self.heightLabel.stringValue = "\(Int(position.rounded()))cm"
+                    }
+                    
+                }
 
-    var count = 0
-    
-    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-        print("Wrote value for: \(characteristic)")
-        peripheral.readValue(for: characteristic)
-        count += 1
-        
-//        if count < 50 {
-//            if let data = Data(hexString: "4700") {
-//                peripheral.writeValue(data, for: characteristic, type: .withResponse)
-//
-//            }
-//        }
-    }
-    
-    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        print("Read value: \(characteristic.value) for: \(characteristic)")
-    }
+            }
+
 
 }
-
-
-//extension CBPeripheral: Equatable {
-//
-//    static func == (lhs: CBPeripheral, rhs: CBPeripheral) -> Bool {
-//        return lhs.identifier == rhs.identifier
-//    }
-//}
 
 
 extension Data {

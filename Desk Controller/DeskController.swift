@@ -48,8 +48,10 @@ class DeskController: NSObject {
     let minDurationIncrements: TimeInterval = 0.5
     var lastMoveTime: Date
     
-    let minMovementIncrements: Float = 0.75 // Make sure it's moved at least 0.75cm before moving again
+    let minMovementIncrements: Float = 0.5 // Make sure it's moved at least 0.75cm before moving again
     var previousMovementIncrement: Float
+    
+    var onPositionChange: (Float) -> Void = { _ in }
     
     init(desk: DeskPeripheral) {
         self.desk = desk
@@ -61,6 +63,7 @@ class DeskController: NSObject {
             print("Position changed...")
             print("Position: \(position)cm")
             self.moveIfNeeded()
+            self.onPositionChange(position)
         }
     }
     
@@ -100,8 +103,12 @@ class DeskController: NSObject {
         
         if let data = Data(hexString: "FF00") {
             desk.peripheral.writeValue(data, for: characteristic, type: .withResponse)
-            currentMovingDirection = .none
+            
         }
+        
+        currentMovingDirection = .none
+        movingToPosition = nil
+        previousPosition = nil
     }
     
     func moveToPosition(_ position: Position) {
@@ -115,7 +122,7 @@ class DeskController: NSObject {
     var previousPosition: Float?
     
     private func moveIfNeeded() {
-        print("Move if needed: \(movingToPosition)")
+
         guard let toPosition = movingToPosition, var position = desk.position else {
             return
         }
@@ -131,13 +138,16 @@ class DeskController: NSObject {
         print("Speed: \(speed)")
         print("Preferences: \(preferences)")
         
-        if toPosition == .stand {
+        let positionToMoveTo = preferences.preference(for: toPosition)
+
+        
+        if positionToMoveTo > position {
             
             if currentMovingDirection == .up {
                 position += distanceOffset
             }
             
-            if position < preferences.stand && speed >= 0 {
+            if position < positionToMoveTo && speed >= 0 {
                 if timeSinceLastMove > minDurationIncrements && distanceSincePreviousPosition >= minMovementIncrements {
                     previousPosition = position
                     moveUp()
@@ -145,22 +155,20 @@ class DeskController: NSObject {
                 
             } else {
                 stopMoving()
-                movingToPosition = nil
             }
-        } else if toPosition == .sit {
+        } else if positionToMoveTo < position {
             
             if currentMovingDirection == .down {
                 position -= distanceOffset
             }
             
-            if position > preferences.sit && speed <= 0 {
+            if position > positionToMoveTo && speed <= 0 {
                 if timeSinceLastMove > minDurationIncrements && distanceSincePreviousPosition >= minMovementIncrements {
                     previousPosition = position
                     moveDown()
                 }
             } else {
                 stopMoving()
-                movingToPosition = nil
             }
         }
         
