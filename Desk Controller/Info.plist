@@ -26,5 +26,9 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>To connect to your desk</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>To connect to your desk</string>
 </dict>
 </plist>

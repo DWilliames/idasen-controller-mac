@@ -11,6 +11,7 @@
 		7D93E28A25AAB38B00F37364 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D93E28925AAB38B00F37364 /* ViewController.swift */; };
 		7D93E28C25AAB38D00F37364 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D93E28B25AAB38D00F37364 /* Assets.xcassets */; };
 		7D93E28F25AAB38D00F37364 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D93E28D25AAB38D00F37364 /* Main.storyboard */; };
+		7D93E29A25AAD2D400F37364 /* DeskPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D93E29925AAD2D400F37364 /* DeskPeripheral.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		7D93E28E25AAB38D00F37364 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7D93E29025AAB38D00F37364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D93E29125AAB38D00F37364 /* Desk_Controller.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Desk_Controller.entitlements; sourceTree = "<group>"; };
+		7D93E29925AAD2D400F37364 /* DeskPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeskPeripheral.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			children = (
 				7D93E28725AAB38B00F37364 /* AppDelegate.swift */,
 				7D93E28925AAB38B00F37364 /* ViewController.swift */,
+				7D93E29925AAD2D400F37364 /* DeskPeripheral.swift */,
 				7D93E28B25AAB38D00F37364 /* Assets.xcassets */,
 				7D93E28D25AAB38D00F37364 /* Main.storyboard */,
 				7D93E29025AAB38D00F37364 /* Info.plist */,
@@ -133,6 +136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D93E28A25AAB38B00F37364 /* ViewController.swift in Sources */,
+				7D93E29A25AAD2D400F37364 /* DeskPeripheral.swift in Sources */,
 				7D93E28825AAB38B00F37364 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
