@@ -8,8 +8,8 @@
 import Cocoa
 import CoreBluetooth
 
-class ViewController: NSViewController, CBPeripheralDelegate, CBCentralManagerDelegate {
-
+class ViewController: NSViewController {
+    
     // Properties
     private var centralManager: CBCentralManager?
     private var peripheral: CBPeripheral?
@@ -19,21 +19,78 @@ class ViewController: NSViewController, CBPeripheralDelegate, CBCentralManagerDe
     
     var controller: DeskController? = nil
     
-    @IBOutlet weak var heightLabel: NSTextField!
+    let bluetoothManager = BluetoothManager.shared
+    
+    @IBOutlet weak var heightLabel: NSTextField?
     
     @IBOutlet weak var upButton: NSButton!
     @IBOutlet weak var downButton: NSButton!
     
+    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+    
+    func setup() {
+        bluetoothManager.onAvailablePeripheralsChange = { peripherals in
+            print("Available peripherals: \(peripherals)")
+        }
+        
+        bluetoothManager.onConnectedPeripheralChange = { peripheral in
+            print("Connect peripheral updated to: \(String(describing: peripheral))")
+            guard let peripheral = peripheral else {
+                print("No peripherals connected – it probably disconnected then")
+                return
+            }
+            
+            self.setControllerFor(deskPeripheral: peripheral)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let queue = DispatchQueue(label: "BT_queue")
-        centralManager = CBCentralManager(delegate: self, queue: queue)
+        
+        
+        
+        if let position = controller?.desk.position {
+            onDeskPositionChange(position)
+        }
     }
-
+    
     override var representedObject: Any? {
         didSet {
-        // Update the view, if already loaded.
+            // Update the view, if already loaded.
+        }
+    }
+    
+    func setControllerFor(deskPeripheral: CBPeripheral) {
+        print("Set controller for: \(deskPeripheral)")
+        let desk = DeskPeripheral(peripheral: deskPeripheral)
+        
+        controller = DeskController(desk: desk)
+        controller?.onPositionChange = { [weak self] deskPosition in
+            DispatchQueue.main.async {
+                self?.onDeskPositionChange(deskPosition)
+            }
+        }
+    }
+    
+    func onDeskPositionChange(_ newPosition: Float) {
+        DispatchQueue.main.async {
+            self.heightLabel?.stringValue = "\(Int(newPosition.rounded()))cm"
+        }
+    }
+    
+    func reconnect() {
+        print("Reconnect if necessary")
+        
+        if bluetoothManager.connectedPeripheral == nil {
+            bluetoothManager.startScanning()
         }
     }
     
@@ -76,125 +133,7 @@ class ViewController: NSViewController, CBPeripheralDelegate, CBCentralManagerDe
     @IBAction func stop(_ sender: Any) {
         controller?.stopMoving()
     }
-    
-    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        print("Central state update: \(central.state)")
-                    if central.state != .poweredOn {
-                        print("Central is not powered on")
-                    } else {
-                        print("Central scanning for", DeskPeripheral.deskPositionServiceUUID);
-                        central.scanForPeripherals(withServices: nil,
-                                                   options: [CBCentralManagerScanOptionAllowDuplicatesKey : false])
-                    }
-    }
-    
-    // Handles the result of the scan
-            func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-                
-//                print("Discovered peripheral: \(peripheral)")
-                
-                guard !peripherals.contains(peripheral) else {
-                    return
-                }
-                
-                if let name = peripheral.name, name.contains("Desk") {
-                    print("FOUND DESK: \(peripheral)")
-                    
-                    peripherals.append(peripheral)
-
-                    central.connect(peripheral, options: nil)
-                }
-
-
-            }
-    
-    // The handler if we do connect succesfully
-            func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-                print("Connected to peripheral: \(peripheral)")
-                
-                print(peripherals)
-                
-                guard peripherals.contains(peripheral) else {
-                    return
-                }
-                
-                print("Connected to Desk")
-//                peripheral.discoverServices(nil)
-                let desk = DeskPeripheral(peripheral: peripheral)
-                desks.append(desk)
-                
-                controller = DeskController(desk: desk)
-//                controller?.moveToPosition(.sit)
-                controller?.onPositionChange = { position in
-                    
-                    DispatchQueue.main.async {
-                        self.heightLabel.stringValue = "\(Int(position.rounded()))cm"
-                    }
-                    
-                }
-
-            }
-
 
 }
 
 
-extension Data {
-    
-    init?(hexString: String) {
-      let len = hexString.count / 2
-      var data = Data(capacity: len)
-      var i = hexString.startIndex
-      for _ in 0..<len {
-        let j = hexString.index(i, offsetBy: 2)
-        let bytes = hexString[i..<j]
-        if var num = UInt8(bytes, radix: 16) {
-          data.append(&num, count: 1)
-        } else {
-          return nil
-        }
-        i = j
-      }
-      self = data
-    }
-}
-//
-//extension Numeric {
-//    init<D: DataProtocol>(_ data: D) {
-//        var value: Self = .zero
-//        let size = withUnsafeMutableBytes(of: &value, { data.copyBytes(to: $0)} )
-//        assert(size == MemoryLayout.size(ofValue: value))
-//        self = value
-//    }
-//}
-//
-//extension DataProtocol {
-//    func value<N: Numeric>() -> N { .init(self) }
-//}
-//
-//extension Data {
-//    enum Endianess {
-//        case little
-//        case big
-//    }
-//
-//    func toFloat(endianess: Endianess = .little) -> Float? {
-//        guard self.count <= 4 else { return nil }
-//
-//        switch endianess {
-//        case .big:
-//            let data = [UInt8](repeating: 0x00, count: 4-self.count) + self
-//            return data.withUnsafeBytes { $0.load(as: Float.self) }
-//        case .little:
-//            let data = self + [UInt8](repeating: 0x00, count: 4-self.count)
-//            return data.reversed().withUnsafeBytes { $0.load(as: Float.self) }
-//        }
-//    }
-//
-//    var uint16: UInt16 {
-//            get {
-//                let i16array = self.withUnsafeBytes { $0.load(as: UInt16.self) }
-//                return i16array
-//            }
-//        }
-//}

@@ -41,8 +41,8 @@ class DeskController: NSObject {
 
     let desk: DeskPeripheral
     // My preferences
-//    let preferences = PositionPreferences(sit: 72, stand: 119)
-    let preferences = PositionPreferences(sit: 72, stand: 80)
+    let preferences = PositionPreferences(sit: 72, stand: 119)
+//    let preferences = PositionPreferences(sit: 72, stand: 80)
     
     let distanceOffset: Float = 0.5 // e.g if we're within this of the distance and it's currently moving then we can probably stop
     let minDurationIncrements: TimeInterval = 0.5
