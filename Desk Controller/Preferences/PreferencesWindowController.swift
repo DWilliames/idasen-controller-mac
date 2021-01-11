@@ -62,7 +62,6 @@ class PreferencesWindowController: NSWindowController {
         var sittingPosition = Preferences.shared.sittingPosition
         
         if !Preferences.shared.isMetric {
-            print("\(standingPosition)cm = \(standingPosition.convertToInches())in")
             standingPosition = standingPosition.convertToInches()
             sittingPosition = sittingPosition.convertToInches()
         }

@@ -49,14 +49,14 @@ class ViewController: NSViewController {
     func setup() {
         
         bluetoothManager.onConnectedPeripheralChange = { [weak self] peripheral in
-            print("Connect peripheral updated to: \(String(describing: peripheral))")
+            // print("Connect peripheral updated to: \(String(describing: peripheral))")
             
             DispatchQueue.main.async {
                 self?.updateConnectionLabels()
             }
             
             guard let peripheral = peripheral else {
-                print("No peripherals connected – it probably disconnected then")
+                // print("No peripherals connected – it probably disconnected then")
                 return
             }
 
@@ -151,7 +151,7 @@ class ViewController: NSViewController {
     }
     
     func setControllerFor(deskPeripheral: CBPeripheral) {
-        print("Set controller for: \(deskPeripheral)")
+        // print("Set controller for: \(deskPeripheral)")
         let desk = DeskPeripheral(peripheral: deskPeripheral)
         
         controller = DeskController(desk: desk)
@@ -162,7 +162,7 @@ class ViewController: NSViewController {
         })
         
         controller?.onCurrentMovingDirectionChange = { [weak self] movingDirection in
-            print("Moving direction changed")
+            // print("Moving direction changed")
             if movingDirection == .none {
                 
                 DispatchQueue.main.async {
@@ -193,7 +193,7 @@ class ViewController: NSViewController {
     }
     
     func reconnect() {
-        print("Reconnect if necessary")
+        // print("Reconnect if necessary")
         
         if bluetoothManager.connectedPeripheral == nil {
             bluetoothManager.startScanning()
@@ -257,21 +257,9 @@ class ViewController: NSViewController {
     }
     
     @IBAction func showPreferences(_ sender: Any) {
-        
-        
         PreferencesWindowController.sharedInstance.showWindow(nil)
         PreferencesWindowController.sharedInstance.deskController = controller
         popover?.performClose(self)
-        
-//        let preferencesWindowController = PreferencesWindowController.init(windowNibName: "PreferencesWindowController")
-        
-        
-//        preferencesWindowController.showWindow(nil)
-//        preferencesWindowController.window?.orderFrontRegardless()
-//        preferencesWindowController.window?.makeKey()
-//        preferencesWindowController.window?.makeKeyAndOrderFront(preferencesWindowController.window)
-//        [[NSApp mainWindow] makeKeyAndOrderFront:self];
-//        NSApp.activate(ignoringOtherApps: true)
     }
 }
 

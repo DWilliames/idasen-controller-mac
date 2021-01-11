@@ -66,10 +66,10 @@ extension DeskPeripheral: CBPeripheralDelegate {
         services.forEach { service in
             if service.uuid == DeskPeripheral.deskPositionServiceUUID {
                 positionService = service
-                print("Discovered position service: \(service)")
+                // print("Discovered position service: \(service)")
             } else if service.uuid == DeskPeripheral.deskControlServiceUUID {
                 controlService = service
-                print("Discovered control service: \(service)")
+                // print("Discovered control service: \(service)")
             } else {
                 return
             }
@@ -86,14 +86,14 @@ extension DeskPeripheral: CBPeripheralDelegate {
         
         characteristics.forEach { characteristic in
             if characteristic.uuid == DeskPeripheral.deskPositionCharacteristicUUID {
-                print("Discovered position characteristic: \(characteristic)")
+                // print("Discovered position characteristic: \(characteristic)")
                 positionCharacteristic = characteristic
                 
                 peripheral.readValue(for: characteristic)
                 // Start monitoring the position / speed
                 peripheral.setNotifyValue(true, for: characteristic)
             } else if characteristic.uuid == DeskPeripheral.deskControlCharacteristicUUID {
-                print("Discovered control characteristic: \(characteristic)")
+                // print("Discovered control characteristic: \(characteristic)")
                 controlCharacteristic = characteristic
             } else {
                 return
@@ -109,7 +109,7 @@ extension DeskPeripheral: CBPeripheralDelegate {
             
             hasLoadedPositionCharacteristicValues = true
             
-            // Position = 16 Little Endian – Unsigned =
+            // Position = 16 Little Endian – Unsigned
             // Speed = 16 Little Endian – Signed
             
             let positionValue = [value[0], value[1]].withUnsafeBytes {
@@ -119,8 +119,6 @@ extension DeskPeripheral: CBPeripheralDelegate {
             let speedValue = [value[2], value[3]].withUnsafeBytes {
                 $0.load(as: Int16.self)
             }
-            
-//            print(speedValue)
             
             speed = Float(speedValue)
             position = Float(positionValue) / 100 + DeskPeripheral.heightPositionOffset

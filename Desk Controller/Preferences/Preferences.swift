@@ -36,7 +36,7 @@ class Preferences {
         }
         
         set {
-            print("Save new Standing position: \(newValue)")
+            // print("Save new Standing position: \(newValue)")
             UserDefaults.standard.setValue(newValue, forKey: standingKey)
         }
     }
@@ -50,7 +50,7 @@ class Preferences {
         }
         
         set {
-            print("Save new Sitting position: \(newValue)")
+            // print("Save new Sitting position: \(newValue)")
             UserDefaults.standard.setValue(newValue, forKey: sittingKey)
         }
     }
@@ -64,7 +64,7 @@ class Preferences {
         }
         
         set {
-            print("Save new position Offset: \(newValue)")
+            // print("Save new position Offset: \(newValue)")
             UserDefaults.standard.setValue(newValue, forKey: offsetKey)
         }
     }
@@ -78,7 +78,7 @@ class Preferences {
         }
         
         set {
-            print("Saving is metric? \(newValue)")
+            // print("Saving is metric? \(newValue)")
             UserDefaults.standard.setValue(newValue, forKey: isMetricKey)
         }
     }
@@ -88,7 +88,7 @@ class Preferences {
             return LaunchAtLogin.isEnabled
         }
         set {
-            print("Saving launch at login: \(newValue)")
+            // print("Saving launch at login: \(newValue)")
             LaunchAtLogin.isEnabled = newValue
         }
     }

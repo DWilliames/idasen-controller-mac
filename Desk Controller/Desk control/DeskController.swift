@@ -18,7 +18,7 @@ class DeskController: NSObject {
     var onCurrentMovingDirectionChange: (MovingDirection) -> Void = { _ in }
     var currentMovingDirection: MovingDirection = .none {
         didSet {
-            print("Did set current moving direction: \(currentMovingDirection)")
+            // print("Did set current moving direction: \(currentMovingDirection)")
             onCurrentMovingDirectionChange(currentMovingDirection)
         }
     }
@@ -52,10 +52,7 @@ class DeskController: NSObject {
         super.init()
         
         desk.onPositionChange = { position in
-            print("Position changed...")
-            print("Position: \(position)cm")
             self.moveIfNeeded()
-            
             self.positionChangeCallbacks.forEach { $0(position) }
         }
     }
@@ -66,7 +63,7 @@ class DeskController: NSObject {
     
     
     func moveUp() {
-        print("Move up")
+        // print("Move up")
         guard let characteristic = desk.controlCharacteristic else {
             return
         }
@@ -75,12 +72,11 @@ class DeskController: NSObject {
             desk.peripheral.writeValue(data, for: characteristic, type: .withResponse)
             lastMoveTime = Date()
             currentMovingDirection = .up
-            print("WRITE MOVE UP")
         }
     }
     
     func moveDown() {
-        print("Move Down")
+        // print("Move Down")
         guard let characteristic = desk.controlCharacteristic else {
             return
         }
@@ -89,7 +85,6 @@ class DeskController: NSObject {
             desk.peripheral.writeValue(data, for: characteristic, type: .withResponse)
             lastMoveTime = Date()
             currentMovingDirection = .down
-            print("WRITE MOVE DOWN")
         }
     }
     
@@ -110,8 +105,7 @@ class DeskController: NSObject {
     
     func moveToPosition(_ position: Position) {
         movingToPosition = position
-        
-        print("Move to position: \(position)")
+        // print("Move to position: \(position)")
     }
     
     
@@ -129,10 +123,6 @@ class DeskController: NSObject {
         let timeSinceLastMove = lastMoveTime.distance(to: Date())
         let distanceSincePreviousPosition = abs((previousPosition ?? position + minMovementIncrements) - position)
         
-        print("Since last move: \(distanceSincePreviousPosition)cm")
-        
-        print("Position: \(position)cm")
-        print("Speed: \(speed)")
         
         let positionToMoveTo = Preferences.shared.forPosition(toPosition)
 

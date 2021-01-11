@@ -69,7 +69,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        print("Discovered peripheral: \(peripheral) • \(advertisementData) • \(RSSI)")
+        // print("Discovered peripheral: \(peripheral) • \(advertisementData) • \(RSSI)")
         
         // Make sure it's not already connected & meets our matching criteria
         guard connectedPeripheral != peripheral, matchCriteria(peripheral) else {
@@ -95,11 +95,11 @@ extension BluetoothManager: CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("Connected to peripheral: \(peripheral)")
+        // print("Connected to peripheral: \(peripheral)")
         
         // Make sure it's the one we're connecting to
         guard peripheral == connectedPeripheral else {
-            print("Not the one we're tracking")
+            // print("Not the one we're tracking")
             return
         }
         
@@ -111,11 +111,11 @@ extension BluetoothManager: CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        print("Disconnected to peripheral: \(peripheral)")
+        // print("Disconnected to peripheral: \(peripheral)")
         
         // Make sure it's the one we're connecting to
         guard peripheral == connectedPeripheral else {
-            print("Not the one we're tracking")
+            // print("Not the one we're tracking")
             return
         }
         
