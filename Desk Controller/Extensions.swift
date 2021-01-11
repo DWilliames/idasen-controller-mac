@@ -26,3 +26,27 @@ extension Data {
         self = data
     }
 }
+
+extension Float {
+    
+    /// Convert from centimeters to inches
+    func convertToInches() -> Float {
+        let centimeterMeasurement = Measurement(value: Double(self), unit: UnitLength.centimeters)
+        let inchesMeasurement = centimeterMeasurement.converted(to: UnitLength.inches)
+        return Float(inchesMeasurement.value)
+    }
+    
+    /// Convert from inches to centimeters
+    func convertToCentimeters() -> Float {
+        let inchesMeasurement = Measurement(value: Double(self), unit: UnitLength.inches)
+        let centimeterMeasurement = inchesMeasurement.converted(to: UnitLength.centimeters)
+        return Float(centimeterMeasurement.value)
+    }
+    
+    /// Rounds the double to decimal places value
+    func rounded(toPlaces places: Int) -> Float {
+        let divisor = pow(10.0, Float(places))
+        return (self * divisor).rounded() / divisor
+    }
+
+}

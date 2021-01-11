@@ -7,31 +7,21 @@
 
 import Cocoa
 
-enum Position {
-    case sit, stand
-}
 
 enum MovingDirection {
     case up, down, none
 }
 
-struct PositionPreferences {
-    let sit: Float // Position in cm
-    let stand: Float // Position in cm
-    
-    func preference(for position: Position) -> Float {
-        switch position {
-        case .sit:
-            return sit
-        case .stand:
-            return stand
-        }
-    }
-}
 
 class DeskController: NSObject {
     
-    var currentMovingDirection: MovingDirection = .none
+    var onCurrentMovingDirectionChange: (MovingDirection) -> Void = { _ in }
+    var currentMovingDirection: MovingDirection = .none {
+        didSet {
+            print("Did set current moving direction: \(currentMovingDirection)")
+            onCurrentMovingDirectionChange(currentMovingDirection)
+        }
+    }
     
     var movingToPosition: Position? = nil {
         didSet {
@@ -41,7 +31,7 @@ class DeskController: NSObject {
 
     let desk: DeskPeripheral
     // My preferences
-    let preferences = PositionPreferences(sit: 72, stand: 119)
+//    let preferences = PositionPreferencesManager.shared.currentPreferences
 //    let preferences = PositionPreferences(sit: 72, stand: 80)
     
     let distanceOffset: Float = 0.5 // e.g if we're within this of the distance and it's currently moving then we can probably stop
@@ -51,7 +41,9 @@ class DeskController: NSObject {
     let minMovementIncrements: Float = 0.5 // Make sure it's moved at least 0.75cm before moving again
     var previousMovementIncrement: Float
     
-    var onPositionChange: (Float) -> Void = { _ in }
+//    var onPositionChange: (Float) -> Void = { _ in }
+    
+    private var positionChangeCallbacks = [(Float) -> Void]()
     
     init(desk: DeskPeripheral) {
         self.desk = desk
@@ -63,8 +55,13 @@ class DeskController: NSObject {
             print("Position changed...")
             print("Position: \(position)cm")
             self.moveIfNeeded()
-            self.onPositionChange(position)
+            
+            self.positionChangeCallbacks.forEach { $0(position) }
         }
+    }
+    
+    func onPositionChange(_ callback: @escaping (Float) -> Void) {
+        positionChangeCallbacks.append(callback)
     }
     
     
@@ -136,9 +133,8 @@ class DeskController: NSObject {
         
         print("Position: \(position)cm")
         print("Speed: \(speed)")
-        print("Preferences: \(preferences)")
         
-        let positionToMoveTo = preferences.preference(for: toPosition)
+        let positionToMoveTo = Preferences.shared.forPosition(toPosition)
 
         
         if positionToMoveTo > position {

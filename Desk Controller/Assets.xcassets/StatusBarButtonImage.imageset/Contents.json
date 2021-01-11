@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "Icon.pdf",
       "idiom" : "mac"
     },
     {
@@ -8,7 +9,6 @@
       "scale" : "1x"
     },
     {
-      "filename" : "Icon.png",
       "idiom" : "mac",
       "scale" : "2x"
     }

@@ -15,10 +15,11 @@ class BluetoothManager: NSObject {
     // Singleton for managing it all
     static let shared = BluetoothManager()
     
-    private var centralManager: CBCentralManager?
+    var centralManager: CBCentralManager?
     
+    var onCentralManagerStateChange: (CBCentralManager?) -> Void = { _ in }
     
-    var onConnectedPeripheralChange: (CBPeripheral?) -> Void = { _ in print("Connect peripheral changed") }
+    var onConnectedPeripheralChange: (CBPeripheral?) -> Void = { _ in  }
     private var connectPeripheralRSSI: NSNumber?
     var connectedPeripheral: CBPeripheral? // Or is currently being connected to
 
@@ -56,11 +57,12 @@ extension BluetoothManager: CBCentralManagerDelegate {
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         
+        centralManager = central
+        onCentralManagerStateChange(central)
+        
         guard central.state == .poweredOn else {
             return
         }
-        
-        centralManager = central
         
         // Start scanning for all peripherals
         central.scanForPeripherals(withServices: nil, options: nil)

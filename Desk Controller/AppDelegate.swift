@@ -6,7 +6,6 @@
 //
 
 import Cocoa
-import LaunchAtLogin
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -17,18 +16,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        print(LaunchAtLogin.isEnabled)
-        LaunchAtLogin.isEnabled = true
-        print(LaunchAtLogin.isEnabled)
-        
+        // If it's the first launch set the value for Open at Login to true
+        if Preferences.shared.isFirstLaunch {
+            Preferences.shared.openAtLogin = true
+            Preferences.shared.isFirstLaunch = false
+        }
+
         // Don't show the icon in the Dock
         NSApp.setActivationPolicy(.accessory)
         
         // Setup the right click menu
         let statusBarMenu = NSMenu(title: "Desk Controller Menu")
-        statusBarMenu.addItem(withTitle: "Launch on startup", action: nil, keyEquivalent: "")
-        statusBarMenu.addItem(withTitle: "Settings", action: nil, keyEquivalent: "")
-        statusBarMenu.addItem(.separator())
         statusBarMenu.addItem(withTitle: "Quit", action: #selector(quit), keyEquivalent: "")
 
         
@@ -36,7 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let button = statusBarItem.button {
             
             if let image = NSImage(named: "StatusBarButtonImage") {
-                image.size = NSSize(width: 24, height: 24)
+                image.size = NSSize(width: 16, height: 16)
                 button.image = image
             }
             
@@ -46,6 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         if let mainViewController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "ViewControllerId") as? ViewController {
+            mainViewController.popover = popover
             popover.contentViewController = mainViewController
         }
         
@@ -76,7 +75,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
             // Pop up the menu programmatically
             if let button = statusBarItem.button, let menu = button.menu {
-                menu.popUp(positioning: nil, at: CGPoint(x: -10, y: button.bounds.maxY + 6), in: button)
+                menu.popUp(positioning: nil, at: CGPoint(x: -15, y: button.bounds.maxY + 6), in: button)
             }
             
             
@@ -116,5 +115,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         eventMonitor?.stop()
     }
     
+    public static func bringToFront(window: NSWindow) {
+            window.makeKeyAndOrderFront(nil)
+            NSApp.activate(ignoringOtherApps: true)
+        }
     
 }
