@@ -6,13 +6,10 @@
 //
 
 import Cocoa
-import ServiceManagement
+import LaunchAtLogin
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
-    
-    let launcherAppId = "com.davidwilliames.AutoLaunchHelper"
-    
     
     let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     let popover = NSPopover()
@@ -20,17 +17,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
-        
-        // Kill the launcher if required
-        
-        let runningApps = NSWorkspace.shared.runningApplications
-        let isRunning = !runningApps.filter { $0.bundleIdentifier == launcherAppId }.isEmpty
-        
-        SMLoginItemSetEnabled(launcherAppId as CFString, true)
-        
-        if isRunning {
-            DistributedNotificationCenter.default().post(name: .killLauncher, object: Bundle.main.bundleIdentifier!)
-        }
+        print(LaunchAtLogin.isEnabled)
+        LaunchAtLogin.isEnabled = true
+        print(LaunchAtLogin.isEnabled)
         
         // Don't show the icon in the Dock
         NSApp.setActivationPolicy(.accessory)
@@ -41,9 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusBarMenu.addItem(withTitle: "Settings", action: nil, keyEquivalent: "")
         statusBarMenu.addItem(.separator())
         statusBarMenu.addItem(withTitle: "Quit", action: #selector(quit), keyEquivalent: "")
-        
-        
-        
+
         
         // Set the status bar icon and action
         if let button = statusBarItem.button {
@@ -69,11 +56,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         eventMonitor?.start()
     }
-    
-    @objc func toggleAutoLaunch(_ sender: NSButton) {
-//        let isAuto = sender.state == .on
-//        SMLoginItemSetEnabled(launcherAppId as CFString, isAuto)
-    }
+
     
     @objc func quit() {
         NSApp.terminate(nil)
@@ -134,8 +117,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-}
-
-extension Notification.Name {
-    static let killLauncher = Notification.Name("killLauncher")
 }
