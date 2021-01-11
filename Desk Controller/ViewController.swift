@@ -34,7 +34,7 @@ class ViewController: NSViewController {
     weak var popover: NSPopover?
     
     
-    let stopLabelString = "Stop"
+    let stopLabelString = "Stop moving"
     
     override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)

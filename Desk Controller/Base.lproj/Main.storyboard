@@ -722,11 +722,11 @@
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
                                     </stackView>
-                                    <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V5z-qb-tjh">
-                                        <rect key="frame" x="47" y="0.0" width="32" height="64"/>
+                                    <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="-4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V5z-qb-tjh">
+                                        <rect key="frame" x="47" y="2" width="32" height="60"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XC4-5A-QYb" customClass="TouchButton" customModule="Desk_Controller" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="27.5" width="32" height="42"/>
+                                                <rect key="frame" x="0.0" y="28" width="32" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="32" id="HUK-S2-BEk"/>
                                                     <constraint firstAttribute="width" constant="32" id="Igr-XX-glM"/>
@@ -734,7 +734,7 @@
                                                 <buttonCell key="cell" type="bevel" bezelStyle="rounded" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="ow8-7N-pOv">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
-                                                    <imageReference key="image" image="chevron.up.circle" catalog="system" symbolScale="large"/>
+                                                    <imageReference key="image" image="Up" symbolScale="large"/>
                                                 </buttonCell>
                                                 <color key="contentTintColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <connections>
@@ -742,7 +742,7 @@
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v7s-Fd-rhs" customClass="TouchButton" customModule="Desk_Controller" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="-4.5" width="32" height="42"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="32" id="YiL-UR-Ypq"/>
                                                     <constraint firstAttribute="height" constant="32" id="Z11-fx-zcW"/>
@@ -750,7 +750,7 @@
                                                 <buttonCell key="cell" type="bevel" bezelStyle="rounded" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="pjY-sv-S9e">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
-                                                    <imageReference key="image" image="chevron.down.circle" catalog="system" symbolScale="large"/>
+                                                    <imageReference key="image" image="Down" symbolScale="large"/>
                                                 </buttonCell>
                                                 <color key="contentTintColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <connections>
@@ -871,9 +871,10 @@
                                         </button>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="FjW-Es-6vS" firstAttribute="leading" secondItem="AoN-DW-xP2" secondAttribute="trailing" constant="173" id="CP1-wS-VcV"/>
                                         <constraint firstItem="FjW-Es-6vS" firstAttribute="centerY" secondItem="jGo-1D-1pn" secondAttribute="centerY" id="I9l-8g-WMO"/>
                                         <constraint firstItem="AoN-DW-xP2" firstAttribute="centerY" secondItem="jGo-1D-1pn" secondAttribute="centerY" id="VCk-Ez-LSW"/>
-                                        <constraint firstAttribute="trailing" secondItem="FjW-Es-6vS" secondAttribute="trailing" constant="24" id="tCo-y5-TTO"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FjW-Es-6vS" secondAttribute="trailing" constant="16" symbolic="YES" id="tCo-y5-TTO"/>
                                         <constraint firstItem="AoN-DW-xP2" firstAttribute="leading" secondItem="jGo-1D-1pn" secondAttribute="leading" constant="24" id="u2I-p4-Hgd"/>
                                     </constraints>
                                 </view>
@@ -883,7 +884,7 @@
                                 <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="U7R-vc-jmR">
-                                <rect key="frame" x="46" y="64" width="273" height="64"/>
+                                <rect key="frame" x="141" y="114" width="84" height="14"/>
                                 <textFieldCell key="cell" selectable="YES" alignment="center" title="Multiline Label" id="SNS-tc-hfa">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -896,12 +897,12 @@
                             <constraint firstAttribute="trailing" secondItem="Xmh-8j-MGj" secondAttribute="trailing" id="D3p-aQ-4fv"/>
                             <constraint firstItem="U7R-vc-jmR" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="32" id="QIA-i5-Ydj"/>
                             <constraint firstItem="Xmh-8j-MGj" firstAttribute="top" secondItem="c3U-9H-IAC" secondAttribute="bottom" constant="32" id="UOs-Ge-Plo"/>
-                            <constraint firstItem="jGo-1D-1pn" firstAttribute="top" secondItem="U7R-vc-jmR" secondAttribute="bottom" constant="32" id="k9r-EI-nhG"/>
+                            <constraint firstItem="U7R-vc-jmR" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="X9Y-Ll-jxk"/>
                             <constraint firstItem="Xmh-8j-MGj" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="muB-yc-SNy"/>
                             <constraint firstItem="c3U-9H-IAC" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="pJd-Y5-mhw"/>
-                            <constraint firstAttribute="trailing" secondItem="U7R-vc-jmR" secondAttribute="trailing" constant="48" id="rsx-6Y-Fbr"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="U7R-vc-jmR" secondAttribute="trailing" constant="48" id="rsx-6Y-Fbr"/>
                             <constraint firstAttribute="bottom" secondItem="Xmh-8j-MGj" secondAttribute="bottom" id="sFC-xy-9mp"/>
-                            <constraint firstItem="U7R-vc-jmR" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="48" id="vES-4H-wvq"/>
+                            <constraint firstItem="U7R-vc-jmR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="48" id="vES-4H-wvq"/>
                         </constraints>
                     </view>
                     <connections>
@@ -924,8 +925,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Down" width="16" height="16"/>
         <image name="NSActionTemplate" width="15" height="15"/>
-        <image name="chevron.down.circle" catalog="system" width="19" height="19"/>
-        <image name="chevron.up.circle" catalog="system" width="19" height="19"/>
+        <image name="Up" width="16" height="16"/>
     </resources>
 </document>
