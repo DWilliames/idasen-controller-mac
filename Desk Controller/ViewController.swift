@@ -8,14 +8,10 @@
 import Cocoa
 import CoreBluetooth
 
+
 class ViewController: NSViewController {
     
-    // Properties
-    private var centralManager: CBCentralManager?
-    private var peripheral: CBPeripheral?
     
-    var peripherals = [CBPeripheral]()
-    var desks = [DeskPeripheral]()
     
     var controller: DeskController? = nil
     
@@ -37,10 +33,6 @@ class ViewController: NSViewController {
     }
     
     func setup() {
-        bluetoothManager.onAvailablePeripheralsChange = { peripherals in
-            print("Available peripherals: \(peripherals)")
-        }
-        
         bluetoothManager.onConnectedPeripheralChange = { peripheral in
             print("Connect peripheral updated to: \(String(describing: peripheral))")
             guard let peripheral = peripheral else {

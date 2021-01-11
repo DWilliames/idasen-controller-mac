@@ -6,29 +6,56 @@
 //
 
 import Cocoa
+import ServiceManagement
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
-
+    
+    let launcherAppId = "com.davidwilliames.AutoLaunchHelper"
+    
+    
     let statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     let popover = NSPopover()
     var eventMonitor: EventMonitor?
-
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        
+        
+        // Kill the launcher if required
+        
+        let runningApps = NSWorkspace.shared.runningApplications
+        let isRunning = !runningApps.filter { $0.bundleIdentifier == launcherAppId }.isEmpty
+        
+        SMLoginItemSetEnabled(launcherAppId as CFString, true)
+        
+        if isRunning {
+            DistributedNotificationCenter.default().post(name: .killLauncher, object: Bundle.main.bundleIdentifier!)
+        }
         
         // Don't show the icon in the Dock
         NSApp.setActivationPolicy(.accessory)
         
         // Setup the right click menu
         let statusBarMenu = NSMenu(title: "Desk Controller Menu")
+        statusBarMenu.addItem(withTitle: "Launch on startup", action: nil, keyEquivalent: "")
+        statusBarMenu.addItem(withTitle: "Settings", action: nil, keyEquivalent: "")
+        statusBarMenu.addItem(.separator())
         statusBarMenu.addItem(withTitle: "Quit", action: #selector(quit), keyEquivalent: "")
-//        statusBarItem.menu = statusBarMenu
+        
+        
         
         
         // Set the status bar icon and action
         if let button = statusBarItem.button {
-            button.image = NSImage(named: "StatusBarButtonImage")
-            button.action = #selector(AppDelegate.togglePopover(_:))
+            
+            if let image = NSImage(named: "StatusBarButtonImage") {
+                image.size = NSSize(width: 24, height: 24)
+                button.image = image
+            }
+            
+            button.menu = statusBarMenu
+            button.sendAction(on: [.leftMouseUp, .rightMouseUp])
+            button.action = #selector(AppDelegate.clickedStatusItem(_:))
         }
         
         if let mainViewController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "ViewControllerId") as? ViewController {
@@ -43,14 +70,41 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         eventMonitor?.start()
     }
     
+    @objc func toggleAutoLaunch(_ sender: NSButton) {
+//        let isAuto = sender.state == .on
+//        SMLoginItemSetEnabled(launcherAppId as CFString, isAuto)
+    }
+    
     @objc func quit() {
         NSApp.terminate(nil)
     }
-
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         
     }
-
+    
+    @objc func clickedStatusItem(_ sender: NSStatusItem) {
+        guard let event = NSApp.currentEvent else {
+            return
+        }
+        
+        if event.type == .rightMouseUp {
+            // Right clicked
+            
+            // Pop up the menu programmatically
+            if let button = statusBarItem.button, let menu = button.menu {
+                menu.popUp(positioning: nil, at: CGPoint(x: -10, y: button.bounds.maxY + 6), in: button)
+            }
+            
+            
+            
+        } else {
+            // Left clicked
+            
+            togglePopover(sender)
+        }
+    }
+    
     @objc func togglePopover(_ sender: AnyObject?) {
         if popover.isShown {
             closePopover(sender)
@@ -78,7 +132,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         popover.performClose(sender)
         eventMonitor?.stop()
     }
-
-
+    
+    
 }
 
+extension Notification.Name {
+    static let killLauncher = Notification.Name("killLauncher")
+}

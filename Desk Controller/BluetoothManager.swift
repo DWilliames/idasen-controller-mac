@@ -23,6 +23,7 @@ class BluetoothManager: NSObject {
     var connectedPeripheral: CBPeripheral? // Or is currently being connected to
 
     
+    // Not currently used... just in case I want to handle multiple desks at once
     var onAvailablePeripheralsChange: ([CBPeripheral]) -> Void = { _ in }
     private var availablePeripherals = [CBPeripheral]() {
         didSet {

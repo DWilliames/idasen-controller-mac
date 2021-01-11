@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		7D81872025ABE9FF0076DC19 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D81871F25ABE9FF0076DC19 /* BluetoothManager.swift */; };
 		7D81872325ABF1500076DC19 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D81872225ABF1500076DC19 /* Extensions.swift */; };
+		7D81872C25AC00FE0076DC19 /* HelperAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D81872B25AC00FE0076DC19 /* HelperAppDelegate.swift */; };
+		7D81873025AC01010076DC19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D81872F25AC01010076DC19 /* Assets.xcassets */; };
+		7D81873325AC01010076DC19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D81873125AC01010076DC19 /* Main.storyboard */; };
+		7D81874625AC13890076DC19 /* AutoLaunchHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D81872925AC00FE0076DC19 /* AutoLaunchHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7D81874B25AC13AF0076DC19 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D81874A25AC13AF0076DC19 /* Cocoa.framework */; };
+		7D81874D25AC13B80076DC19 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D81874C25AC13B80076DC19 /* ServiceManagement.framework */; };
+		7D81874F25AC13BD0076DC19 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D81874E25AC13BD0076DC19 /* CoreBluetooth.framework */; };
 		7D93E28825AAB38B00F37364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D93E28725AAB38B00F37364 /* AppDelegate.swift */; };
 		7D93E28A25AAB38B00F37364 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D93E28925AAB38B00F37364 /* ViewController.swift */; };
 		7D93E28C25AAB38D00F37364 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D93E28B25AAB38D00F37364 /* Assets.xcassets */; };
@@ -19,9 +26,31 @@
 		7D93E2A425AB244500F37364 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D93E2A325AB244500F37364 /* EventMonitor.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		7D81874525AC13570076DC19 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				7D81874625AC13890076DC19 /* AutoLaunchHelper.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		7D81871F25ABE9FF0076DC19 /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		7D81872225ABF1500076DC19 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		7D81872925AC00FE0076DC19 /* AutoLaunchHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoLaunchHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D81872B25AC00FE0076DC19 /* HelperAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperAppDelegate.swift; sourceTree = "<group>"; };
+		7D81872F25AC01010076DC19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7D81873225AC01010076DC19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7D81873425AC01010076DC19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D81873525AC01010076DC19 /* AutoLaunchHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AutoLaunchHelper.entitlements; sourceTree = "<group>"; };
+		7D81874A25AC13AF0076DC19 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		7D81874C25AC13B80076DC19 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		7D81874E25AC13BD0076DC19 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		7D93E28425AAB38B00F37364 /* Desk Controller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Desk Controller.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D93E28725AAB38B00F37364 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D93E28925AAB38B00F37364 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,21 +65,55 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7D93E28125AAB38B00F37364 /* Frameworks */ = {
+		7D81872625AC00FE0076DC19 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7D93E28125AAB38B00F37364 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D81874B25AC13AF0076DC19 /* Cocoa.framework in Frameworks */,
+				7D81874F25AC13BD0076DC19 /* CoreBluetooth.framework in Frameworks */,
+				7D81874D25AC13B80076DC19 /* ServiceManagement.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D81872A25AC00FE0076DC19 /* AutoLaunchHelper */ = {
+			isa = PBXGroup;
+			children = (
+				7D81872B25AC00FE0076DC19 /* HelperAppDelegate.swift */,
+				7D81872F25AC01010076DC19 /* Assets.xcassets */,
+				7D81873125AC01010076DC19 /* Main.storyboard */,
+				7D81873425AC01010076DC19 /* Info.plist */,
+				7D81873525AC01010076DC19 /* AutoLaunchHelper.entitlements */,
+			);
+			path = AutoLaunchHelper;
+			sourceTree = "<group>";
+		};
+		7D81874925AC13AF0076DC19 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7D81874E25AC13BD0076DC19 /* CoreBluetooth.framework */,
+				7D81874C25AC13B80076DC19 /* ServiceManagement.framework */,
+				7D81874A25AC13AF0076DC19 /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7D93E27B25AAB38B00F37364 = {
 			isa = PBXGroup;
 			children = (
 				7D93E28625AAB38B00F37364 /* Desk Controller */,
+				7D81872A25AC00FE0076DC19 /* AutoLaunchHelper */,
 				7D93E28525AAB38B00F37364 /* Products */,
+				7D81874925AC13AF0076DC19 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				7D93E28425AAB38B00F37364 /* Desk Controller.app */,
+				7D81872925AC00FE0076DC19 /* AutoLaunchHelper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -84,6 +148,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7D81872825AC00FE0076DC19 /* AutoLaunchHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D81873625AC01010076DC19 /* Build configuration list for PBXNativeTarget "AutoLaunchHelper" */;
+			buildPhases = (
+				7D81872525AC00FE0076DC19 /* Sources */,
+				7D81872625AC00FE0076DC19 /* Frameworks */,
+				7D81872725AC00FE0076DC19 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AutoLaunchHelper;
+			productName = AutoLaunchHelper;
+			productReference = 7D81872925AC00FE0076DC19 /* AutoLaunchHelper.app */;
+			productType = "com.apple.product-type.application";
+		};
 		7D93E28325AAB38B00F37364 /* Desk Controller */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7D93E29425AAB38D00F37364 /* Build configuration list for PBXNativeTarget "Desk Controller" */;
@@ -91,6 +172,7 @@
 				7D93E28025AAB38B00F37364 /* Sources */,
 				7D93E28125AAB38B00F37364 /* Frameworks */,
 				7D93E28225AAB38B00F37364 /* Resources */,
+				7D81874525AC13570076DC19 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -110,6 +192,9 @@
 				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
+					7D81872825AC00FE0076DC19 = {
+						CreatedOnToolsVersion = 12.3;
+					};
 					7D93E28325AAB38B00F37364 = {
 						CreatedOnToolsVersion = 12.3;
 					};
@@ -129,11 +214,21 @@
 			projectRoot = "";
 			targets = (
 				7D93E28325AAB38B00F37364 /* Desk Controller */,
+				7D81872825AC00FE0076DC19 /* AutoLaunchHelper */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7D81872725AC00FE0076DC19 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D81873025AC01010076DC19 /* Assets.xcassets in Resources */,
+				7D81873325AC01010076DC19 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7D93E28225AAB38B00F37364 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -146,6 +241,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7D81872525AC00FE0076DC19 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D81872C25AC00FE0076DC19 /* HelperAppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7D93E28025AAB38B00F37364 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -164,6 +267,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		7D81873125AC01010076DC19 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D81873225AC01010076DC19 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		7D93E28D25AAB38D00F37364 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -175,6 +286,54 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		7D81873725AC01010076DC19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AutoLaunchHelper/AutoLaunchHelper.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3P725D2V7A;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = AutoLaunchHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.davidwilliames.AutoLaunchHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		7D81873825AC01010076DC19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AutoLaunchHelper/AutoLaunchHelper.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 3P725D2V7A;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = AutoLaunchHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.davidwilliames.AutoLaunchHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		7D93E29225AAB38D00F37364 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -296,6 +455,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Desk Controller/Desk_Controller.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 3P725D2V7A;
@@ -317,6 +477,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Desk Controller/Desk_Controller.entitlements";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 3P725D2V7A;
@@ -335,6 +496,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7D81873625AC01010076DC19 /* Build configuration list for PBXNativeTarget "AutoLaunchHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D81873725AC01010076DC19 /* Debug */,
+				7D81873825AC01010076DC19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7D93E27F25AAB38B00F37364 /* Build configuration list for PBXProject "Desk Controller" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
