@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             Preferences.shared.openAtLogin = true
             Preferences.shared.isFirstLaunch = false
         }
-
+        
         // Don't show the icon in the Dock
         NSApp.setActivationPolicy(.accessory)
         
@@ -35,7 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusBarMenu.addItem(withTitle: "Preferences", action: #selector(showPreferences), keyEquivalent: "")
         statusBarMenu.addItem(.separator())
         statusBarMenu.addItem(withTitle: "Quit", action: #selector(quit), keyEquivalent: "")
-
+        
         
         // Set the status bar icon and action
         if let button = statusBarItem.button {
@@ -69,7 +69,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         PreferencesWindowController.sharedInstance.deskController = viewController?.controller
         popover.performClose(self)
     }
-
+    
     @objc func moveToSit() {
         viewController?.controller?.moveToPosition(.sit)
     }
@@ -99,7 +99,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 menu.popUp(positioning: nil, at: CGPoint(x: -15, y: button.bounds.maxY + 6), in: button)
             }
             
-
+            
         } else {
             // Left clicked
             togglePopover(sender)
@@ -124,9 +124,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         eventMonitor?.start()
         
         // On popover showing; force a reconnection with the Table in case the connection is lost
-        if let viewController = popover.contentViewController as? ViewController {
-            viewController.reconnect()
-        }
+        viewController?.reconnect()
     }
     
     func closePopover(_ sender: AnyObject?) {
@@ -135,8 +133,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     public static func bringToFront(window: NSWindow) {
-            window.makeKeyAndOrderFront(nil)
-            NSApp.activate(ignoringOtherApps: true)
-        }
+        window.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
+    }
     
 }

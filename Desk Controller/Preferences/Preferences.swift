@@ -24,15 +24,13 @@ class Preferences {
     private let isMetricKey = "isMetric"
     
     private let hasLaunched = "hasLaunched"
-    
-    // 72, 119
 
     var standingPosition: Float {
         get {
             if let position = UserDefaults.standard.value(forKey: standingKey) {
                 return position as! Float
             }
-            return 119//110 // Default standing position is
+            return 110 // Default standing position is
         }
         
         set {
@@ -46,7 +44,7 @@ class Preferences {
             if let position = UserDefaults.standard.value(forKey: sittingKey) {
                 return position as! Float
             }
-            return 73//70 // Default sitting position
+            return 70 // Default sitting position
         }
         
         set {

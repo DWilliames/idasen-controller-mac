@@ -12,7 +12,6 @@ enum MovingDirection {
     case up, down, none
 }
 
-
 class DeskController: NSObject {
     
     var onCurrentMovingDirectionChange: (MovingDirection) -> Void = { _ in }
@@ -30,9 +29,6 @@ class DeskController: NSObject {
     }
 
     let desk: DeskPeripheral
-    // My preferences
-//    let preferences = PositionPreferencesManager.shared.currentPreferences
-//    let preferences = PositionPreferences(sit: 72, stand: 80)
     
     let distanceOffset: Float = 0.5 // e.g if we're within this of the distance and it's currently moving then we can probably stop
     let minDurationIncrements: TimeInterval = 0.5
@@ -42,8 +38,6 @@ class DeskController: NSObject {
     var previousMovementIncrement: Float
     
     static var shared: DeskController?
-    
-//    var onPositionChange: (Float) -> Void = { _ in }
     
     private var positionChangeCallbacks = [(Float) -> Void]()
     
@@ -111,7 +105,6 @@ class DeskController: NSObject {
         movingToPosition = position
         // print("Move to position: \(position)")
     }
-    
     
     
     var previousPosition: Float?

@@ -49,6 +49,7 @@
 		7D93E2A325AB244500F37364 /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		7DA946FC25AD32BB000B4816 /* deskcontroller.sdef */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = deskcontroller.sdef; sourceTree = "<group>"; };
 		7DA946FF25AD3462000B4816 /* MoveDeskCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveDeskCommand.swift; sourceTree = "<group>"; };
+		7DA9470825AD8F9A000B4816 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +98,7 @@
 		7D93E27B25AAB38B00F37364 = {
 			isa = PBXGroup;
 			children = (
+				7DA9470825AD8F9A000B4816 /* README.md */,
 				7D93E28625AAB38B00F37364 /* Desk Controller */,
 				7D93E28525AAB38B00F37364 /* Products */,
 				7D81874925AC13AF0076DC19 /* Frameworks */,
@@ -114,14 +116,13 @@
 		7D93E28625AAB38B00F37364 /* Desk Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7DA946FC25AD32BB000B4816 /* deskcontroller.sdef */,
+				7DA9470625AD8EDA000B4816 /* AppleScript Commands */,
 				7D93E28725AAB38B00F37364 /* AppDelegate.swift */,
-				7DA946FF25AD3462000B4816 /* MoveDeskCommand.swift */,
 				7D93E28925AAB38B00F37364 /* ViewController.swift */,
 				7D81871F25ABE9FF0076DC19 /* BluetoothManager.swift */,
+				7D0361A725AC42770051FB71 /* Desk control */,
 				7D93E2A325AB244500F37364 /* EventMonitor.swift */,
 				7D93E29F25AB203800F37364 /* TouchButton.swift */,
-				7D0361A725AC42770051FB71 /* Desk control */,
 				7D81872225ABF1500076DC19 /* Extensions.swift */,
 				7D93E28B25AAB38D00F37364 /* Assets.xcassets */,
 				7D93E28D25AAB38D00F37364 /* Main.storyboard */,
@@ -130,6 +131,15 @@
 				7D93E29125AAB38D00F37364 /* Desk_Controller.entitlements */,
 			);
 			path = "Desk Controller";
+			sourceTree = "<group>";
+		};
+		7DA9470625AD8EDA000B4816 /* AppleScript Commands */ = {
+			isa = PBXGroup;
+			children = (
+				7DA946FC25AD32BB000B4816 /* deskcontroller.sdef */,
+				7DA946FF25AD3462000B4816 /* MoveDeskCommand.swift */,
+			);
+			path = "AppleScript Commands";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
