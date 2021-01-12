@@ -9,13 +9,16 @@ If you find this at least a little bit useful, why don't you help me out by:
 * Shout me a cup of coffe via [PayPal](https://paypal.me/dtw/5)
 * Follow me on Twitter [@davidwilliames](https://twitter.com/davidwilliames)
 
+
+[**Download latest release**](https://github.com/DWilliames/idasen-controller/releases/latest/download/Desk.Controller.app.zip)
+
 ---
 
 ![Animated example](/images/example.gif)
 
 ![Preferences example](/images/preferences_example.png)
 
----
+
 
 ## Why?
 
@@ -44,7 +47,7 @@ I'm already on my Mac when sitting/standing at my desk — so why can't I quickl
 
 ## Getting started
 
-* Download the 'Desk Controller' App, and move it to your 'Applications' folder
+* [Download the 'Desk Controller' App](https://github.com/DWilliames/idasen-controller/releases/latest/download/Desk.Controller.app.zip), and move it to your 'Applications' folder
 * Double-click to open it
 * Now it will show up in your Status Bar
 
