@@ -50,6 +50,7 @@
 		7DA946FC25AD32BB000B4816 /* deskcontroller.sdef */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = deskcontroller.sdef; sourceTree = "<group>"; };
 		7DA946FF25AD3462000B4816 /* MoveDeskCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveDeskCommand.swift; sourceTree = "<group>"; };
 		7DA9470825AD8F9A000B4816 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7DA9470A25AD9C93000B4816 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +99,7 @@
 		7D93E27B25AAB38B00F37364 = {
 			isa = PBXGroup;
 			children = (
+				7DA9470A25AD9C93000B4816 /* .gitignore */,
 				7DA9470825AD8F9A000B4816 /* README.md */,
 				7D93E28625AAB38B00F37364 /* Desk Controller */,
 				7D93E28525AAB38B00F37364 /* Products */,
@@ -392,7 +394,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 3P725D2V7A;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Desk Controller/Info.plist";
@@ -415,7 +417,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 3P725D2V7A;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Desk Controller/Info.plist";
