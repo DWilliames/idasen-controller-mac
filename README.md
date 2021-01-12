@@ -6,7 +6,7 @@ This is a Mac Status Bar application for controlling your [IKEA IDÅSEN (Linak) 
 
 If you find this at least a little bit useful, why don't you help me out by:
 * Starring this project
-* Shout me a cup of coffe via [PayPal](https://paypal.me/dtw/5)
+* Shout me a cup of coffee via [PayPal](https://paypal.me/dtw/5)
 * Follow me on Twitter [@davidwilliames](https://twitter.com/davidwilliames)
 
 
@@ -56,7 +56,7 @@ Other info:
 * To quit the application entirely; right-click on the Status bar icon and click `Quit`
 
 
-## Troublshooting
+## Troubleshooting
 
 * Make sure no other phones / computers currently have one of the 'Desk Control' apps open and connected to your desk, if you do, simply quit that app, and this Desk Controller app should work
 * Make sure your Idasen Desk still has the word "Desk" in the name of the device — e.g if you changed its name via Linak's Desk Control mobile app
