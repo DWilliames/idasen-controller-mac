@@ -1,3 +1,4 @@
+![App icon](/images/Icon.png) 
 # Idasen Desk Controller – Mac app
 
 
@@ -39,7 +40,7 @@ I'm already on my Mac when sitting/standing at my desk — so why can't I quickl
 
 
 ![Animated example](/images/status_bar_example.png)
-![App icon](/images/Icon.png)
+
 
 ## Getting started
 
@@ -56,7 +57,7 @@ Other info:
 
 * Make sure no other phones / computers currently have one of the 'Desk Control' apps open and connected to your desk, if you do, simply quit that app, and this Desk Controller app should work
 * Make sure your Idasen Desk still has the word "Desk" in the name of the device — e.g if you changed its name via Linak's Desk Control mobile app
-* If it's still not finding your desk; try resetting your desk; to do this:
+* If it's still not finding your desk; try resetting your desk. To do this:
     1. Lower your desk as low as it goes
     2. Now once more hold down the physical controller to lower it even more, after a second or 2 it should jump down and up
     3. Now press and hold the 'bluetooth' button on the front of the physical controller, for a few seconds – until the blue light starts blinking
