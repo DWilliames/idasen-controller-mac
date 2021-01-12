@@ -14,6 +14,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let popover = NSPopover()
     var eventMonitor: EventMonitor?
     
+    var viewController: ViewController?
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         // If it's the first launch set the value for Open at Login to true
@@ -27,6 +29,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Setup the right click menu
         let statusBarMenu = NSMenu(title: "Desk Controller Menu")
+        statusBarMenu.addItem(withTitle: "Move to sit", action: #selector(moveToSit), keyEquivalent: "")
+        statusBarMenu.addItem(withTitle: "Move to stand", action: #selector(moveToStand), keyEquivalent: "")
+        statusBarMenu.addItem(.separator())
+        statusBarMenu.addItem(withTitle: "Preferences", action: #selector(showPreferences), keyEquivalent: "")
+        statusBarMenu.addItem(.separator())
         statusBarMenu.addItem(withTitle: "Quit", action: #selector(quit), keyEquivalent: "")
 
         
@@ -45,6 +52,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if let mainViewController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: "ViewControllerId") as? ViewController {
             mainViewController.popover = popover
+            viewController = mainViewController
             popover.contentViewController = mainViewController
         }
         
@@ -55,7 +63,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         eventMonitor?.start()
     }
+    
+    @objc func showPreferences() {
+        PreferencesWindowController.sharedInstance.showWindow(nil)
+        PreferencesWindowController.sharedInstance.deskController = viewController?.controller
+        popover.performClose(self)
+    }
 
+    @objc func moveToSit() {
+        viewController?.controller?.moveToPosition(.sit)
+    }
+    
+    @objc func moveToStand() {
+        viewController?.controller?.moveToPosition(.stand)
+    }
     
     @objc func quit() {
         NSApp.terminate(nil)
@@ -78,11 +99,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 menu.popUp(positioning: nil, at: CGPoint(x: -15, y: button.bounds.maxY + 6), in: button)
             }
             
-            
-            
+
         } else {
             // Left clicked
-            
             togglePopover(sender)
         }
     }

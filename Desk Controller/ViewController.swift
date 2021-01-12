@@ -177,17 +177,16 @@ class ViewController: NSViewController {
     func onDeskPositionChange(_ newPosition: Float) {
         DispatchQueue.main.async {
             
-            var newPosition = newPosition
+            var convertedPosition = newPosition
             
             if !Preferences.shared.isMetric {
-                newPosition = newPosition.convertToInches()
+                convertedPosition = convertedPosition.convertToInches()
             }
             
-            let positionRounded = newPosition.rounded()
-            self.currentPositionLabel?.stringValue = "\(Int(positionRounded))"
+            self.currentPositionLabel?.stringValue = "\(Int(convertedPosition.rounded()))"
             
-            self.sitButton?.isEnabled = !(Preferences.shared.sittingPosition == positionRounded)
-            self.standButton?.isEnabled = !(Preferences.shared.standingPosition == positionRounded)
+            self.sitButton?.isEnabled = !(Preferences.shared.sittingPosition.rounded() == newPosition.rounded())
+            self.standButton?.isEnabled = !(Preferences.shared.standingPosition.rounded() == newPosition.rounded())
 
         }
     }
@@ -198,6 +197,11 @@ class ViewController: NSViewController {
         if bluetoothManager.connectedPeripheral == nil {
             bluetoothManager.startScanning()
         }
+        
+        if let position = controller?.desk.position {
+            onDeskPositionChange(position)
+        }
+        
     }
     
     @IBAction func moveUpClicked(_ sender: TouchButton) {

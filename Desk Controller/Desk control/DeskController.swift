@@ -41,6 +41,8 @@ class DeskController: NSObject {
     let minMovementIncrements: Float = 0.5 // Make sure it's moved at least 0.75cm before moving again
     var previousMovementIncrement: Float
     
+    static var shared: DeskController?
+    
 //    var onPositionChange: (Float) -> Void = { _ in }
     
     private var positionChangeCallbacks = [(Float) -> Void]()
@@ -55,6 +57,8 @@ class DeskController: NSObject {
             self.moveIfNeeded()
             self.positionChangeCallbacks.forEach { $0(position) }
         }
+        
+        DeskController.shared = self
     }
     
     func onPositionChange(_ callback: @escaping (Float) -> Void) {
