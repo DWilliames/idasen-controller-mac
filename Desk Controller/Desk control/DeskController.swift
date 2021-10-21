@@ -53,7 +53,16 @@ class DeskController: NSObject {
         }
         
         DeskController.shared = self
+        
+        NSWorkspace.shared.notificationCenter.addObserver(
+                self, selector: #selector(onWakeNote(note:)),
+                name: NSWorkspace.didWakeNotification, object: nil)
     }
+    
+    @objc func onWakeNote(note: NSNotification) {
+        BluetoothManager.shared.reconnect()
+    }
+
     
     func onPositionChange(_ callback: @escaping (Float) -> Void) {
         positionChangeCallbacks.append(callback)
