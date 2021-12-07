@@ -10,27 +10,27 @@
 		</data>
 		<key>Resources/Assets.car</key>
 		<data>
-		qk/HW2xpgHcfdPdYTLGs73gBdE8=
+		50kAWBMF7BxWP4OuxK2w8cyMMtg=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
 		<data>
-		HflcrQjjaqV1eMYz6S8f/bDcjlg=
+		rymPfOFLt6DeJItU1OZhuG/g6EQ=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/MainMenu.nib</key>
 		<data>
-		0KtfqEy3acQwQXjEORF30hBumNw=
+		0DytLmb8ueCEMDfjPKz1ngJmBzo=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/ViewControllerId.nib</key>
 		<data>
-		zcE0vlFUQVx+HfgbWa4Fe+3jIeM=
+		ykYg2uDfVPJu+MpnPze672KSkcs=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib</key>
 		<data>
-		K1Sn4dIOcGIQ3c8QW8wfo6qfAAI=
+		MWp5FSeuaZcVWhKwUZCj6MD73cs=
 		</data>
 		<key>Resources/PreferencesWindowController.nib</key>
 		<data>
-		FMIM0dAiCteSat6zShUWgoQUfxg=
+		rgq8VPG60uOmg7TsRNQ58onG404=
 		</data>
 		<key>Resources/deskcontroller.sdef</key>
 		<data>
@@ -43,7 +43,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			pf6lxaMJsbPYY/3v8czQOnh6pgg=
+			k6FC3TH5pU89eUelxc8M1bbqTrE=
 			</data>
 			<key>requirement</key>
 			<string>anchor apple generic and identifier "com.davidwilliames.Desk-Controller-LaunchAtLoginHelper" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "3P725D2V7A")</string>
@@ -59,42 +59,42 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			RmDGhcV4iyhLU8oc7k+CQEXOuFXC8daRF7rTcxJvYMk=
+			nivHgqbHf+oJmY4eZq7L0JFWFboCMazQJHDksIj63aQ=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Bvkb110jfSvs3elqO2iKC5aBphHGDnr9UZEa/0NxrGo=
+			S3SuiPw9sLzhXvX7DOSUlZHstRJcyx7Y0tMprVrg5Qw=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/MainMenu.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/UAiNB8I5e/Atovfgc2d4Uf5DyPeOOhcz6mNZflrgeA=
+			r6eO0Oqz8z/u4+sGG/8o8wxOXZ3OO+gefJIJxjYNFbM=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/ViewControllerId.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xfreElJTlcMcvpjWeY1qUJ/RvmXvjY2VBnrVpms0H/k=
+			WDPCmuIR4FWtEdJCx2y3zCIRBC46rEeh+oJJLjeUqMg=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			jXuIm7aCBu8+Gj8BIBjcsBZMVOKKDkhD5bDmHDYv3oc=
+			xMDMgVGsWmxUXRX4tsUB846sS7VIB7GJUiCiuoKod5A=
 			</data>
 		</dict>
 		<key>Resources/PreferencesWindowController.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			nRtfZCnZamgOtTj/guLuQnH6nRAB/ifMR21NmvC9l70=
+			jUYFwxeHvBQU7rSbwkwb7FaBICrbRpdivmd4pj6OPK4=
 			</data>
 		</dict>
 		<key>Resources/deskcontroller.sdef</key>
