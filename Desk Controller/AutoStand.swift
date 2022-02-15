@@ -12,12 +12,14 @@ class AutoStand: NSObject {
     private var upTimer: Timer?
     private var downTimer: Timer?
     
+    func unschedule() {
+        upTimer?.invalidate()
+        downTimer?.invalidate()
+    }
     
     func update() {
         
-        upTimer?.invalidate()
-        downTimer?.invalidate()
-        //print("Invalidated auto timers.")
+        self.unschedule()
         
         if Preferences.shared.automaticStandEnabled {
             // Stand session always end at top of hour
@@ -40,12 +42,14 @@ class AutoStand: NSObject {
                 }
                 // print("Fired up timer: \(Date())")
             })
+            upTimer?.tolerance = 10
             
             downTimer = Timer.init(fire: nextDown, interval: oneHour, repeats: true, block: {_ in
                 // Always return to sitting, even if inactive
                 DeskController.shared?.moveToPosition(.sit)
                 // print("Fired down timer: \(Date())")
             })
+            upTimer?.tolerance = 10
             
             RunLoop.main.add(upTimer!, forMode: .common)
             RunLoop.main.add(downTimer!, forMode: .common)

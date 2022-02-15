@@ -64,6 +64,11 @@ extension BluetoothManager: CBCentralManagerDelegate {
             return
         }
         
+        if let connectedPeripheral = connectedPeripheral, connectedPeripheral.state == .disconnected {
+            // Reconnect to any previous desk
+            central.connect(connectedPeripheral, options: nil)
+            return
+        }
         // Start scanning for all peripherals
         central.scanForPeripherals(withServices: nil, options: nil)
     }
@@ -113,6 +118,19 @@ extension BluetoothManager: CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         // print("Disconnected to peripheral: \(peripheral)")
         
+        // Make sure it's the one we're connecting to
+        guard peripheral == connectedPeripheral else {
+            // print("Not the one we're tracking")
+            return
+        }
+        
+        connectPeripheralRSSI = nil
+        connectedPeripheral = nil
+        
+        onConnectedPeripheralChange(nil)
+    }
+    
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         // Make sure it's the one we're connecting to
         guard peripheral == connectedPeripheral else {
             // print("Not the one we're tracking")
