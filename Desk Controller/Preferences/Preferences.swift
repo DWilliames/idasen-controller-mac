@@ -9,7 +9,7 @@ import Foundation
 import LaunchAtLogin
 
 enum Position {
-    case sit, stand
+    case sit, stand, custom(height: Float)
 }
 
 class Preferences {
@@ -110,6 +110,8 @@ class Preferences {
             return sittingPosition
         case .stand:
             return standingPosition
+        case .custom(let height):
+            return height
         }
     }
     

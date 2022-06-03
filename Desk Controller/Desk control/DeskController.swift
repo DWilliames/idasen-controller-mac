@@ -22,6 +22,7 @@ class DeskController: NSObject {
         }
     }
     
+
     var movingToPosition: Position? = nil {
         didSet {
             moveIfNeeded()
@@ -113,6 +114,10 @@ class DeskController: NSObject {
     func moveToPosition(_ position: Position) {
         movingToPosition = position
         // print("Move to position: \(position)")
+    }
+    
+    func moveToHeight(_ height: Float) {
+        movingToPosition = .custom(height: height)
     }
     
     
