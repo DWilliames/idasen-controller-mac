@@ -22,6 +22,7 @@ class DeskController: NSObject {
         }
     }
     
+
     var movingToPosition: Position? = nil {
         didSet {
             moveIfNeeded()
@@ -58,7 +59,15 @@ class DeskController: NSObject {
         DeskController.shared = self
         
         autoStand.update()
+        NSWorkspace.shared.notificationCenter.addObserver(
+                self, selector: #selector(onWakeNote(note:)),
+                name: NSWorkspace.didWakeNotification, object: nil)
     }
+    
+    @objc func onWakeNote(note: NSNotification) {
+        BluetoothManager.shared.reconnect()
+    }
+
     
     func onPositionChange(_ callback: @escaping (Float) -> Void) {
         positionChangeCallbacks.append(callback)
@@ -109,6 +118,10 @@ class DeskController: NSObject {
     func moveToPosition(_ position: Position) {
         movingToPosition = position
         // print("Move to position: \(position)")
+    }
+    
+    func moveToHeight(_ height: Float) {
+        movingToPosition = .custom(height: height)
     }
     
     

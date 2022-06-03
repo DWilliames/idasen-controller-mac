@@ -9,5 +9,11 @@
                 <type type="text"/>
             </direct-parameter>
         </command>
+        <command name="move to" code="lkpstrng" description="Move the connected Desk to a specific height">
+            <cocoa class="Desk_Controller.MoveDeskToHeightCommand"/>
+            <direct-parameter description="Move to what height (e.g 120cm or 60in)">
+                <type type="text"/>
+            </direct-parameter>
+        </command>
     </suite>
 </dictionary>

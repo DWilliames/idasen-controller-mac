@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6310F76F2849DAD100F3D9BB /* MoveDeskToHeightCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6310F76E2849DAD100F3D9BB /* MoveDeskToHeightCommand.swift */; };
 		7D03619E25AC39B80051FB71 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03619D25AC39B80051FB71 /* Preferences.swift */; };
 		7D0361A225AC42610051FB71 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0361A025AC42610051FB71 /* PreferencesWindowController.swift */; };
 		7D0361A325AC42610051FB71 /* PreferencesWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D0361A125AC42610051FB71 /* PreferencesWindowController.xib */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6310F76E2849DAD100F3D9BB /* MoveDeskToHeightCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveDeskToHeightCommand.swift; sourceTree = "<group>"; };
 		7D03619D25AC39B80051FB71 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		7D0361A025AC42610051FB71 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		7D0361A125AC42610051FB71 /* PreferencesWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferencesWindowController.xib; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			children = (
 				7DA946FC25AD32BB000B4816 /* deskcontroller.sdef */,
 				7DA946FF25AD3462000B4816 /* MoveDeskCommand.swift */,
+				6310F76E2849DAD100F3D9BB /* MoveDeskToHeightCommand.swift */,
 			);
 			path = "AppleScript Commands";
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D93E28A25AAB38B00F37364 /* ViewController.swift in Sources */,
+				6310F76F2849DAD100F3D9BB /* MoveDeskToHeightCommand.swift in Sources */,
 				7D93E29A25AAD2D400F37364 /* DeskPeripheral.swift in Sources */,
 				7D0361A225AC42610051FB71 /* PreferencesWindowController.swift in Sources */,
 				7D93E2A025AB203800F37364 /* TouchButton.swift in Sources */,
@@ -398,7 +402,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 3P725D2V7A;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Desk Controller/Info.plist";
@@ -406,6 +410,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.davidwilliames.Desk-Controller";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -421,7 +426,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 3P725D2V7A;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Desk Controller/Info.plist";
@@ -429,6 +434,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.davidwilliames.Desk-Controller";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
