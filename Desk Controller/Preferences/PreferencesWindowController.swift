@@ -15,6 +15,12 @@ class PreferencesWindowController: NSWindowController {
     @IBOutlet weak var unitsPopUpButton: NSPopUpButton!
     @IBOutlet weak var currentHeightField: NSTextField?
     
+    @IBOutlet weak var autoStandEnabledCheckbox: NSButton!
+    @IBOutlet weak var autoStandIntervalStepper: NSStepper!
+    @IBOutlet weak var autoStandIntervalLabel: NSTextField!
+    @IBOutlet weak var autoStandInactiveStepper: NSStepper!
+    @IBOutlet weak var autoStandInactiveLabel: NSTextField!
+    
     @IBOutlet weak var openAtLoginCheckbox: NSButton!
     
     static let sharedInstance = PreferencesWindowController(windowNibName: "PreferencesWindowController")
@@ -44,6 +50,10 @@ class PreferencesWindowController: NSWindowController {
         
         unitsPopUpButton.selectItem(at: Preferences.shared.isMetric ? 0 : 1)
         
+        autoStandEnabledCheckbox.state = Preferences.shared.automaticStandEnabled ? .on : .off
+        autoStandIntervalStepper.intValue = Int32(Preferences.shared.automaticStandPerHour / 60)
+        autoStandInactiveStepper.intValue = Int32(Preferences.shared.automaticStandInactivity / 60)
+        
         updateLabels()
         
         deskController?.onPositionChange({ [weak self] position in
@@ -68,6 +78,17 @@ class PreferencesWindowController: NSWindowController {
         
         standingHeightField.stringValue = String(format: "%.1f", standingPosition)
         sittingHeightField.stringValue = String(format: "%.1f", sittingPosition)
+        
+        autoStandIntervalLabel.stringValue = String(format: "%.f",
+            Preferences.shared.automaticStandPerHour / 60)
+        autoStandInactiveLabel.stringValue = String(format: "%.f",
+            Preferences.shared.automaticStandInactivity / 60)
+
+        let autoEnabled = Preferences.shared.automaticStandEnabled
+        autoStandInactiveLabel.textColor = autoEnabled ? .labelColor : .disabledControlTextColor
+        autoStandIntervalLabel.textColor = autoEnabled ? .labelColor : .disabledControlTextColor
+        autoStandIntervalStepper.isEnabled = autoEnabled
+        autoStandInactiveStepper.isEnabled = autoEnabled
         
         var offsetPosition = Preferences.shared.positionOffset + (deskPosition ?? 0)
         if !Preferences.shared.isMetric {
@@ -107,6 +128,23 @@ class PreferencesWindowController: NSWindowController {
             let offset = newPosition - deskPosition
             Preferences.shared.positionOffset = offset
         }
+    }
+    
+    @IBAction func toggledAutoStandCheckbox(_ sender: NSButton) {
+        Preferences.shared.automaticStandEnabled = sender.state == .on
+        updateLabels()
+    }
+    
+    @IBAction func changedAutoStandStepper(_ sender: NSStepper) {
+        let newInterval = Double(autoStandIntervalStepper.intValue)
+        Preferences.shared.automaticStandPerHour = newInterval * 60
+        updateLabels()
+    }
+    
+    @IBAction func changedAutoStandInactiveStepper(_ sender: NSStepper) {
+        let newInactive = Double(autoStandInactiveStepper.intValue)
+        Preferences.shared.automaticStandInactivity = newInactive * 60
+        updateLabels()
     }
     
     @IBAction func changedUnitsPopUpButton(_ sender: NSPopUpButton) {

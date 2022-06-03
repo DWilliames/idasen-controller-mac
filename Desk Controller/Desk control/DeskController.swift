@@ -31,6 +31,8 @@ class DeskController: NSObject {
 
     let desk: DeskPeripheral
     
+    let autoStand: AutoStand
+    
     let distanceOffset: Float = 0.5 // e.g if we're within this of the distance and it's currently moving then we can probably stop
     let minDurationIncrements: TimeInterval = 0.5
     var lastMoveTime: Date
@@ -46,6 +48,7 @@ class DeskController: NSObject {
         self.desk = desk
         self.lastMoveTime = Date().addingTimeInterval(-minDurationIncrements)
         self.previousMovementIncrement = minMovementIncrements
+        self.autoStand = AutoStand()
         super.init()
         
         desk.onPositionChange = { position in
@@ -55,6 +58,7 @@ class DeskController: NSObject {
         
         DeskController.shared = self
         
+        autoStand.update()
         NSWorkspace.shared.notificationCenter.addObserver(
                 self, selector: #selector(onWakeNote(note:)),
                 name: NSWorkspace.didWakeNotification, object: nil)

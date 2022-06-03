@@ -65,6 +65,7 @@ class ViewController: NSViewController {
         
         bluetoothManager.onCentralManagerStateChange = { [weak self] _ in
             DispatchQueue.main.async {
+                self?.controller?.autoStand.unschedule()
                 self?.updateConnectionLabels()
             }
         }

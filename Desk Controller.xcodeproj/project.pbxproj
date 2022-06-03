@@ -26,6 +26,7 @@
 		7D93E2A425AB244500F37364 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D93E2A325AB244500F37364 /* EventMonitor.swift */; };
 		7DA946FD25AD32BB000B4816 /* deskcontroller.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 7DA946FC25AD32BB000B4816 /* deskcontroller.sdef */; };
 		7DA9470025AD3462000B4816 /* MoveDeskCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA946FF25AD3462000B4816 /* MoveDeskCommand.swift */; };
+		81293EBE25F24047007D3663 /* AutoStand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81293EBD25F24047007D3663 /* AutoStand.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		7DA946FF25AD3462000B4816 /* MoveDeskCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveDeskCommand.swift; sourceTree = "<group>"; };
 		7DA9470825AD8F9A000B4816 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7DA9470A25AD9C93000B4816 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		81293EBD25F24047007D3663 /* AutoStand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoStand.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				7D93E28725AAB38B00F37364 /* AppDelegate.swift */,
 				7D93E28925AAB38B00F37364 /* ViewController.swift */,
 				7D81871F25ABE9FF0076DC19 /* BluetoothManager.swift */,
+				81293EBD25F24047007D3663 /* AutoStand.swift */,
 				7D0361A725AC42770051FB71 /* Desk control */,
 				7D93E2A325AB244500F37364 /* EventMonitor.swift */,
 				7D93E29F25AB203800F37364 /* TouchButton.swift */,
@@ -251,6 +254,7 @@
 				7D0361A225AC42610051FB71 /* PreferencesWindowController.swift in Sources */,
 				7D93E2A025AB203800F37364 /* TouchButton.swift in Sources */,
 				7D81872325ABF1500076DC19 /* Extensions.swift in Sources */,
+				81293EBE25F24047007D3663 /* AutoStand.swift in Sources */,
 				7D03619E25AC39B80051FB71 /* Preferences.swift in Sources */,
 				7D81872025ABE9FF0076DC19 /* BluetoothManager.swift in Sources */,
 				7D93E2A425AB244500F37364 /* EventMonitor.swift in Sources */,

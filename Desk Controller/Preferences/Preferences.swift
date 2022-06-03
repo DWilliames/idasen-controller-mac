@@ -18,6 +18,10 @@ class Preferences {
     
     private let standingKey = "standingPositionValue"
     private let sittingKey = "sittingPositionValue"
+
+    private let automaticStandKey = "automaticStandValue"
+    private let automaticStandInactivityKey = "automaticStandInactivityKey"
+    private let automaticStandEnabledKey = "automaticStandEnabledKey"
     
     private let offsetKey = "positionOffsetValue"
     
@@ -50,6 +54,51 @@ class Preferences {
         set {
             // print("Save new Sitting position: \(newValue)")
             UserDefaults.standard.setValue(newValue, forKey: sittingKey)
+        }
+    }
+    
+    var automaticStandPerHour: TimeInterval {
+        get {
+            if let standTime = UserDefaults.standard.value(forKey: automaticStandKey) {
+                return standTime as! TimeInterval
+            }
+            return 10 * 60 // Default automatic stand
+        }
+        
+        set {
+            //print("Save new Automatic stand per hour: \(newValue)")
+            UserDefaults.standard.setValue(newValue, forKey: automaticStandKey)
+            DeskController.shared?.autoStand.update()
+        }
+    }
+    
+    var automaticStandInactivity: TimeInterval {
+        get {
+            if let inactiveTime = UserDefaults.standard.value(forKey: automaticStandInactivityKey) {
+                return inactiveTime as! TimeInterval
+            }
+            return 5 * 60 // Default min
+        }
+        
+        set {
+            //print("Save new Automatic stand inactivity: \(newValue)")
+            UserDefaults.standard.setValue(newValue, forKey: automaticStandInactivityKey)
+        }
+    }
+    
+    var automaticStandEnabled: Bool {
+        get {
+            if let autoStandEnabled = UserDefaults.standard.value(forKey: automaticStandEnabledKey) {
+                return autoStandEnabled as! Bool
+            }
+            return false // Default disabled
+        }
+        
+        set {
+            //print("Saving automatic stand enabled \(newValue)")
+            UserDefaults.standard.setValue(newValue, forKey: automaticStandEnabledKey)
+            // Stop timers
+            DeskController.shared?.autoStand.update()
         }
     }
     
