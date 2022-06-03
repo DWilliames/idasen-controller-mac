@@ -84,7 +84,9 @@ This is great for setting up an  [Alfred App](https://www.alfredapp.com) workflo
 `move "down"`: Will move the desk down a tiny bit
 
 `move to "120cm"`: Will move the desk to a height of 120cm
+
 `move to "55in"`: Will move the desk to a height of 55 inches
+
 `move to "80"`: Will move the desk to a height of either 80cm or 80in depending on your preferences
 
 
