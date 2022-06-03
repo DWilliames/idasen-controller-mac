@@ -48,8 +48,10 @@ class BluetoothManager: NSObject {
     }
     
     func startScanning() {
-        let queue = DispatchQueue(label: "BT_queue")
-        centralManager = CBCentralManager(delegate: self, queue: queue)
+        if centralManager == nil {
+            let queue = DispatchQueue(label: "BT_queue")
+            centralManager = CBCentralManager(delegate: self, queue: queue)
+        }
     }
     
     func reconnect() {
