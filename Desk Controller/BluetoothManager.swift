@@ -35,7 +35,7 @@ class BluetoothManager: NSObject {
     
     // It will only match if the Name contains 'Desk' in it
     var matchCriteria: (CBPeripheral) -> Bool = { peripheral in
-        guard let name = peripheral.name, name.contains("Desk") else {
+        guard let name = peripheral.name, name.lowercased().contains("desk") else {
             return false
         }
         return true
