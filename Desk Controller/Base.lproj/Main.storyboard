@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21225"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -687,14 +687,14 @@
             <objects>
                 <viewController storyboardIdentifier="ViewControllerId" id="XfG-lQ-9wD" customClass="ViewController" customModule="Desk_Controller" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="365" height="160"/>
+                        <rect key="frame" x="0.0" y="0.0" width="365" height="194"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c3U-9H-IAC">
-                                <rect key="frame" x="86" y="64" width="193" height="64"/>
+                                <rect key="frame" x="86" y="64" width="193" height="98"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="horizontal" alignment="firstBaseline" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ezy-LY-WHX">
-                                        <rect key="frame" x="0.0" y="17" width="39" height="31"/>
+                                        <rect key="frame" x="0.0" y="34" width="39" height="31"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hSW-Cu-fSk">
                                                 <rect key="frame" x="-2" y="0.0" width="21" height="31"/>
@@ -723,7 +723,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="-4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V5z-qb-tjh">
-                                        <rect key="frame" x="47" y="2" width="32" height="60"/>
+                                        <rect key="frame" x="47" y="19" width="32" height="60"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XC4-5A-QYb" customClass="TouchButton" customModule="Desk_Controller" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="32" height="32"/>
@@ -768,7 +768,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gjk-WA-zuy">
-                                        <rect key="frame" x="87" y="6" width="106" height="52"/>
+                                        <rect key="frame" x="87" y="23" width="106" height="52"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8F3-Qr-NGL">
                                                 <rect key="frame" x="-7" y="25" width="120" height="32"/>
@@ -884,20 +884,67 @@
                                 <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="U7R-vc-jmR">
-                                <rect key="frame" x="141" y="114" width="84" height="14"/>
+                                <rect key="frame" x="141" y="148" width="84" height="14"/>
                                 <textFieldCell key="cell" selectable="YES" alignment="center" title="Multiline Label" id="SNS-tc-hfa">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ycp-lp-aee">
+                                <rect key="frame" x="56" y="48" width="254" height="20"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rfc-KY-NvH">
+                                        <rect key="frame" x="-7" y="-7" width="92" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Favorite 1" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vtb-SB-quF">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="favorite1Clicked:" target="XfG-lQ-9wD" id="Eev-3k-Ct4"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="geR-Q4-tSV">
+                                        <rect key="frame" x="79" y="-7" width="94" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Favorite 2" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OnX-Uw-MYg">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="favorite2Clicked:" target="XfG-lQ-9wD" id="Ktc-pm-SQu"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EKr-0K-nph">
+                                        <rect key="frame" x="167" y="-7" width="94" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Favorite 3" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ptT-Ia-mLr">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="favorite3Clicked:" target="XfG-lQ-9wD" id="rLD-YA-wd0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ycp-lp-aee" secondAttribute="trailing" constant="55" id="2BN-qq-Emk"/>
                             <constraint firstItem="c3U-9H-IAC" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="32" id="2eo-V0-6hy"/>
                             <constraint firstAttribute="trailing" secondItem="Xmh-8j-MGj" secondAttribute="trailing" id="D3p-aQ-4fv"/>
                             <constraint firstItem="U7R-vc-jmR" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="32" id="QIA-i5-Ydj"/>
                             <constraint firstItem="Xmh-8j-MGj" firstAttribute="top" secondItem="c3U-9H-IAC" secondAttribute="bottom" constant="32" id="UOs-Ge-Plo"/>
                             <constraint firstItem="U7R-vc-jmR" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="X9Y-Ll-jxk"/>
+                            <constraint firstItem="ycp-lp-aee" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="56" id="hLg-Lb-cPq"/>
                             <constraint firstItem="Xmh-8j-MGj" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="muB-yc-SNy"/>
                             <constraint firstItem="c3U-9H-IAC" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="pJd-Y5-mhw"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="U7R-vc-jmR" secondAttribute="trailing" constant="48" id="rsx-6Y-Fbr"/>
@@ -911,6 +958,10 @@
                         <outlet property="currentPositionLabel" destination="hSW-Cu-fSk" id="XoH-gh-T3l"/>
                         <outlet property="deviceNameLabel" destination="VPj-Eg-reC" id="wH5-Ag-14g"/>
                         <outlet property="downButton" destination="v7s-Fd-rhs" id="hcR-Vw-Eav"/>
+                        <outlet property="favorite1" destination="rfc-KY-NvH" id="GWv-PN-1Zn"/>
+                        <outlet property="favorite1Button" destination="rfc-KY-NvH" id="A66-WW-lko"/>
+                        <outlet property="favorite2Button" destination="geR-Q4-tSV" id="oas-Tw-y2X"/>
+                        <outlet property="favorite3Button" destination="EKr-0K-nph" id="DeF-ID-ae4"/>
                         <outlet property="messageLabel" destination="U7R-vc-jmR" id="sbS-C9-WYP"/>
                         <outlet property="sitButton" destination="sMD-Fh-S43" id="xug-y8-bFh"/>
                         <outlet property="standButton" destination="8F3-Qr-NGL" id="hzp-Ly-67r"/>
@@ -921,7 +972,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="260"/>
+            <point key="canvasLocation" x="74.5" y="277"/>
         </scene>
     </scenes>
     <resources>

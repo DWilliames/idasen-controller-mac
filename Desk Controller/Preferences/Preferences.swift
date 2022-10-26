@@ -9,7 +9,7 @@ import Foundation
 import LaunchAtLogin
 
 enum Position {
-    case sit, stand, custom(height: Float)
+    case sit, stand, favorite1, favorite2, favorite3, custom(height: Float)
 }
 
 class Preferences {
@@ -18,6 +18,10 @@ class Preferences {
     
     private let standingKey = "standingPositionValue"
     private let sittingKey = "sittingPositionValue"
+
+    private let favorite1Key = "favorite1PositionValue"
+    private let favorite2Key = "favorite2PositionValue"
+    private let favorite3Key = "favorite3PositionValue"
 
     private let automaticStandKey = "automaticStandValue"
     private let automaticStandInactivityKey = "automaticStandInactivityKey"
@@ -57,6 +61,48 @@ class Preferences {
         }
     }
     
+    var favorite1Position: Float {
+        get {
+            if let position = UserDefaults.standard.value(forKey: favorite1Key) {
+                return position as! Float
+            }
+            return 80 // Default favorite 1 position
+        }
+
+        set {
+            // print("Save new Sitting position: \(newValue)")
+            UserDefaults.standard.setValue(newValue, forKey: favorite1Key)
+        }
+    }
+
+    var favorite2Position: Float {
+        get {
+            if let position = UserDefaults.standard.value(forKey: favorite2Key) {
+                return position as! Float
+            }
+            return 90 // Default favorite 2 position
+        }
+
+        set {
+            // print("Save new Sitting position: \(newValue)")
+            UserDefaults.standard.setValue(newValue, forKey: favorite2Key)
+        }
+    }
+
+    var favorite3Position: Float {
+        get {
+            if let position = UserDefaults.standard.value(forKey: favorite3Key) {
+                return position as! Float
+            }
+            return 100 // Default favorite 3 position
+        }
+
+        set {
+            // print("Save new Sitting position: \(newValue)")
+            UserDefaults.standard.setValue(newValue, forKey: favorite3Key)
+        }
+    }
+
     var automaticStandPerHour: TimeInterval {
         get {
             if let standTime = UserDefaults.standard.value(forKey: automaticStandKey) {
@@ -159,6 +205,12 @@ class Preferences {
             return sittingPosition
         case .stand:
             return standingPosition
+        case .favorite1:
+            return favorite1Position
+        case .favorite2:
+            return favorite2Position
+        case .favorite3:
+            return favorite3Position
         case .custom(let height):
             return height
         }
