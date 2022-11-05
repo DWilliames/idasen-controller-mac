@@ -26,6 +26,10 @@ class ViewController: NSViewController {
     @IBOutlet weak var sitButton: NSButton?
     @IBOutlet weak var standButton: NSButton?
     
+    @IBOutlet weak var favorite1Button: NSButton?
+    @IBOutlet weak var favorite2Button: NSButton?
+    @IBOutlet weak var favorite3Button: NSButton?
+
     // Status indicator
     @IBOutlet weak var statusIndicator: NSView?
     @IBOutlet weak var statusLabel: NSTextField?
@@ -169,6 +173,9 @@ class ViewController: NSViewController {
                 DispatchQueue.main.async {
                     self?.sitButton?.title = "Move to sit"
                     self?.standButton?.title = "Move to stand"
+                    self?.favorite1Button?.title = "Favorite 1"
+                    self?.favorite2Button?.title = "Favorite 2"
+                    self?.favorite3Button?.title = "Favorite 3"
                 }
             }
         }
@@ -188,6 +195,9 @@ class ViewController: NSViewController {
             
             self.sitButton?.isEnabled = !(Preferences.shared.sittingPosition.rounded() == newPosition.rounded())
             self.standButton?.isEnabled = !(Preferences.shared.standingPosition.rounded() == newPosition.rounded())
+            self.favorite1Button?.isEnabled = !(Preferences.shared.favorite1Position.rounded() == newPosition.rounded())
+            self.favorite2Button?.isEnabled = !(Preferences.shared.favorite2Position.rounded() == newPosition.rounded())
+            self.favorite3Button?.isEnabled = !(Preferences.shared.favorite3Position.rounded() == newPosition.rounded())
 
         }
     }
@@ -233,6 +243,45 @@ class ViewController: NSViewController {
         }
     }
     
+    @IBAction func favorite1Clicked(_ sender: Any) {
+        guard let button = favorite1Button else {
+            return
+        }
+
+        if button.title == stopLabelString {
+            controller?.stopMoving()
+        } else {
+            button.title = stopLabelString
+            controller?.moveToPosition(.favorite1)
+        }
+    }
+
+    @IBAction func favorite2Clicked(_ sender: Any) {
+        guard let button = favorite2Button else {
+            return
+        }
+
+        if button.title == stopLabelString {
+            controller?.stopMoving()
+        } else {
+            button.title = stopLabelString
+            controller?.moveToPosition(.favorite2)
+        }
+    }
+
+    @IBAction func favorite3Clicked(_ sender: Any) {
+        guard let button = favorite3Button else {
+            return
+        }
+
+        if button.title == stopLabelString {
+            controller?.stopMoving()
+        } else {
+            button.title = stopLabelString
+            controller?.moveToPosition(.favorite3)
+        }
+    }
+
     @IBAction func sit(_ sender: Any) {
         
         guard let button = sitButton else {

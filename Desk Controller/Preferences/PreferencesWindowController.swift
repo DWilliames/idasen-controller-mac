@@ -15,6 +15,10 @@ class PreferencesWindowController: NSWindowController {
     @IBOutlet weak var unitsPopUpButton: NSPopUpButton!
     @IBOutlet weak var currentHeightField: NSTextField?
     
+    @IBOutlet weak var favorite1HeightField: NSTextField!
+    @IBOutlet weak var favorite2HeightField: NSTextField!
+    @IBOutlet weak var favorite3HeightField: NSTextField!
+
     @IBOutlet weak var autoStandEnabledCheckbox: NSButton!
     @IBOutlet weak var autoStandIntervalStepper: NSStepper!
     @IBOutlet weak var autoStandIntervalLabel: NSTextField!
@@ -70,14 +74,23 @@ class PreferencesWindowController: NSWindowController {
         
         var standingPosition = Preferences.shared.standingPosition
         var sittingPosition = Preferences.shared.sittingPosition
+        var favorite1Position = Preferences.shared.favorite1Position
+        var favorite2Position = Preferences.shared.favorite2Position
+        var favorite3Position = Preferences.shared.favorite3Position
         
         if !Preferences.shared.isMetric {
             standingPosition = standingPosition.convertToInches()
             sittingPosition = sittingPosition.convertToInches()
+            favorite1Position = favorite1Position.convertToInches()
+            favorite2Position = favorite2Position.convertToInches()
+            favorite3Position = favorite3Position.convertToInches()
         }
         
         standingHeightField.stringValue = String(format: "%.1f", standingPosition)
         sittingHeightField.stringValue = String(format: "%.1f", sittingPosition)
+        favorite1HeightField.stringValue = String(format: "%.1f", favorite1Position)
+        favorite2HeightField.stringValue = String(format: "%.1f", favorite2Position)
+        favorite3HeightField.stringValue = String(format: "%.1f", favorite3Position)
         
         autoStandIntervalLabel.stringValue = String(format: "%.f",
             Preferences.shared.automaticStandPerHour / 60)
@@ -119,6 +132,36 @@ class PreferencesWindowController: NSWindowController {
         }
     }
     
+    @IBAction func changedFavorite1HeightField(_ sender: NSTextField) {
+
+        if var newPosition = Float(favorite1HeightField.stringValue) {
+            if !Preferences.shared.isMetric {
+                newPosition = newPosition.convertToCentimeters()
+            }
+            Preferences.shared.favorite1Position = newPosition
+        }
+    }
+
+    @IBAction func changedFavorite2HeightField(_ sender: NSTextField) {
+
+        if var newPosition = Float(favorite2HeightField.stringValue) {
+            if !Preferences.shared.isMetric {
+                newPosition = newPosition.convertToCentimeters()
+            }
+            Preferences.shared.favorite2Position = newPosition
+        }
+    }
+
+    @IBAction func changedFavorite3HeightField(_ sender: NSTextField) {
+
+        if var newPosition = Float(favorite3HeightField.stringValue) {
+            if !Preferences.shared.isMetric {
+                newPosition = newPosition.convertToCentimeters()
+            }
+            Preferences.shared.favorite3Position = newPosition
+        }
+    }
+
     @IBAction func changedCurrentHeightField(_ sender: NSTextField) {
         
         if var newPosition = Float(sender.stringValue), let deskPosition = deskPosition {
