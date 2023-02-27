@@ -43,21 +43,8 @@ class DeskPeripheral: NSObject {
         }
     }
 
-    var lastSwitchControlCommand: SwitchControlCommand? {
-        didSet {
-            if let oldValue,
-                let lastSwitchControlCommand,
-                oldValue.switchAction == .neutral,
-                lastSwitchControlCommand.time.timeIntervalSince(oldValue.time) <= 0.5 {
-                self.doubleTapDetected = true
-                print("DOUBLE TAP", lastSwitchControlCommand.switchAction)
-            } else {
-                self.doubleTapDetected = false
-            }
-        }
-    }
-
-    var doubleTapDetected = false
+    var switchControlCommandQueue = SwitchControlCommandQueue()
+    var onDoubleTapDetected: ((_ direction: MovingDirection) -> ())?
 
     init(peripheral: CBPeripheral) {
         self.peripheral = peripheral
@@ -71,9 +58,7 @@ class DeskPeripheral: NSObject {
 
 extension DeskPeripheral: CBPeripheralDelegate {
 
-
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-
         guard peripheral == self.peripheral, let services = peripheral.services else {
             return
         }
@@ -141,30 +126,70 @@ extension DeskPeripheral: CBPeripheralDelegate {
     }
 
     private func detectSwitchAction(speed: Float) {
-        var switchAction: SwitchControlCommand.SwitchAction = .neutral
+        var direction: MovingDirection = .none
 
         switch speed {
             case _ where speed == 0:
-                switchAction = .neutral
+                direction = .none
             case _ where speed < 0:
-                switchAction = .down
+                direction = .down
             case _ where speed > 0:
-                switchAction = .up
+                direction = .up
             default:
                 break
         }
 
-        self.lastSwitchControlCommand = SwitchControlCommand(switchAction: switchAction, time: Date())
+        if (self.switchControlCommandQueue.addCommand(command: SwitchControlCommand(direction: direction))) {
+            if let doubleTapDirection = self.switchControlCommandQueue.detectDoubleTap() {
+                self.onDoubleTapDetected?(doubleTapDirection)
+            }
+        }
     }
 }
 
 struct SwitchControlCommand {
-    enum SwitchAction {
-        case neutral
-        case up
-        case down
+    let direction: MovingDirection
+    let time: Date = Date()
+}
+
+class SwitchControlCommandQueue {
+    private var commands: [SwitchControlCommand] = []
+
+    func addCommand(command: SwitchControlCommand) -> Bool {
+        guard command.direction != self.commands.last?.direction else {
+            return false
+        }
+
+        if self.commands.count == 3 {
+            if command.direction == .none {
+                return false
+            }
+            
+            self.commands.removeFirst()
+        }
+
+        self.commands.append(command)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.commands.removeAll()
+        }
+
+        return true
     }
 
-    let switchAction: SwitchAction
-    let time: Date
+    func detectDoubleTap() -> MovingDirection? {
+        guard self.commands.count == 3 else {
+            return nil
+        }
+
+        guard self.commands[1].direction == .none else {
+            return nil
+        }
+
+        if self.commands[0].direction == self.commands[2].direction {
+            return self.commands[0].direction
+        } else {
+            return nil
+        }
+    }
 }

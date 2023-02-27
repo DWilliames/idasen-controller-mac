@@ -21,7 +21,12 @@ class DeskController: NSObject {
             onCurrentMovingDirectionChange(currentMovingDirection)
         }
     }
-    
+
+    var onDoubleTapDetected: ((_ direction: MovingDirection) -> ())? {
+        didSet {
+            self.desk.onDoubleTapDetected = onDoubleTapDetected
+        }
+    }
 
     var movingToPosition: Position? = nil {
         didSet {
