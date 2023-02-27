@@ -14,6 +14,8 @@ class PreferencesWindowController: NSWindowController {
     
     @IBOutlet weak var unitsPopUpButton: NSPopUpButton!
     @IBOutlet weak var currentHeightField: NSTextField?
+
+    @IBOutlet weak var doubleTapToSitStandCheckbox: NSButton!
     
     @IBOutlet weak var autoStandEnabledCheckbox: NSButton!
     @IBOutlet weak var autoStandIntervalStepper: NSStepper!
@@ -47,6 +49,7 @@ class PreferencesWindowController: NSWindowController {
         super.windowDidLoad()
         
         openAtLoginCheckbox.state = Preferences.shared.openAtLogin ? .on : .off
+        doubleTapToSitStandCheckbox.state = Preferences.shared.doubleTapToSitStand ? .on : .off
         
         unitsPopUpButton.selectItem(at: Preferences.shared.isMetric ? 0 : 1)
         
@@ -128,6 +131,10 @@ class PreferencesWindowController: NSWindowController {
             let offset = newPosition - deskPosition
             Preferences.shared.positionOffset = offset
         }
+    }
+
+    @IBAction func toggledDoubleTaptoSitStandCheckbox(_ sender: NSButton) {
+        Preferences.shared.doubleTapToSitStand = sender.state == .on
     }
     
     @IBAction func toggledAutoStandCheckbox(_ sender: NSButton) {

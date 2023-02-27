@@ -136,22 +136,25 @@ extension DeskPeripheral: CBPeripheralDelegate {
             speed = Float(speedValue)
             position = Float(positionValue) / 100 + DeskPeripheral.heightPositionOffset
 
-            var switchAction: SwitchControlCommand.SwitchAction = .neutral
-
-            switch speed {
-                case _ where speed == 0:
-                    switchAction = .neutral
-                case _ where speed < 0:
-                    switchAction = .down
-                case _ where speed > 0:
-                    switchAction = .up
-                default:
-                    break
-            }
-
-            let switchControlCommand = SwitchControlCommand(switchAction: switchAction, time: Date())
-            self.lastSwitchControlCommand = SwitchControlCommand(switchAction: switchAction, time: Date())
+            self.detectSwitchAction(speed: speed)
         }
+    }
+
+    private func detectSwitchAction(speed: Float) {
+        var switchAction: SwitchControlCommand.SwitchAction = .neutral
+
+        switch speed {
+            case _ where speed == 0:
+                switchAction = .neutral
+            case _ where speed < 0:
+                switchAction = .down
+            case _ where speed > 0:
+                switchAction = .up
+            default:
+                break
+        }
+
+        self.lastSwitchControlCommand = SwitchControlCommand(switchAction: switchAction, time: Date())
     }
 }
 
