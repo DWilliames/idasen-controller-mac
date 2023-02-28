@@ -178,8 +178,6 @@ class ViewController: NSViewController {
                 return
             }
 
-            self?.controller?.stopMoving()
-
             DispatchQueue.main.async {
                 if direction == .up {
                     self?.stand()
@@ -265,6 +263,7 @@ class ViewController: NSViewController {
     }
 
     private func sit() {
+        controller?.stopMoving()
         controller?.moveToPosition(.sit)
     }
     
@@ -282,6 +281,7 @@ class ViewController: NSViewController {
     }
 
     private func stand() {
+        controller?.stopMoving()
         controller?.moveToPosition(.stand)
     }
     
