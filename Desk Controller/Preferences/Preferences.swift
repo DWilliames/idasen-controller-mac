@@ -26,6 +26,8 @@ class Preferences {
     private let offsetKey = "positionOffsetValue"
     
     private let isMetricKey = "isMetric"
+
+    private let doubleTapToSitStandKey = "doubleTapToSitStandKey"
     
     private let hasLaunched = "hasLaunched"
 
@@ -137,6 +139,16 @@ class Preferences {
         set {
             // print("Saving launch at login: \(newValue)")
             LaunchAtLogin.isEnabled = newValue
+        }
+    }
+
+    var doubleTapToSitStand: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: doubleTapToSitStandKey)
+        }
+
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: doubleTapToSitStandKey)
         }
     }
     
